@@ -11,10 +11,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  body { background: #0D1B2A; font-family: Georgia, 'Times New Roman', serif; color: #E8DCC8; overscroll-behavior: none; }
-  button { font-family: inherit; }
-  ::-webkit-scrollbar { display: none; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { background: #0D1B2A; font-family: Georgia,'Times New Roman',serif; color: #E8DCC8; overscroll-behavior: none; }
+button { font-family: inherit; }
+input, textarea { font-family: inherit; }
+::-webkit-scrollbar { display: none; }
 </style>
 </head>
 <body>
@@ -23,313 +24,395 @@
 
 const DAYS = [
   {
-    id:"monday",label:"DAY 1",day:"MONDAY",focus:"Chest + Triceps + Shoulders + Core",
-    time:"~60 min",color:"#1B4F72",accent:"#2E86C1",
+    id:"push", label:"DÍA A", day:"PUSH", focus:"Pecho · Hombros · Tríceps · Core",
+    time:"~48 min", color:"#1B4F72", accent:"#2E86C1",
     exercises:[
-      {id:"m1",name:"Chest Press Machine",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Start here - warm up the chest first"},
-      {id:"m2",name:"Dumbbell Flat Press",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Use a bench - natural range of motion, better than machine alone"},
-      {id:"m3",name:"Pec Deck Machine",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Squeeze at the peak of each rep, slow return"},
-      {id:"m4",name:"Smith Machine Shoulder Press",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Ella: empieza con menos peso. El Smith ayuda con el balance y control"},
-      {id:"m5",name:"Tricep Pushdown (Cable)",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Keep elbows locked in at your sides, slow on the way back up"},
-      {id:"m6",name:"Dumbbell Overhead Tricep Extension",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"One dumbbell held with both hands. Full stretch at the top"},
-      {id:"m7",name:"Face Pull (Cable)",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"IMPORTANTE: Protege el hombro a largo plazo. Peso ligero, enfoque en la forma. No saltar este ejercicio"},
-      {id:"m8",name:"Plank",sets:"3",reps:"40 sec",rest:"45 sec",who:"Both",note:"Core firme, no dejar caer las caderas. Respira normal"},
-      {id:"m9",name:"Hanging Knee Raise / Lying Leg Raise",sets:"3",reps:"12-15",rest:"45 sec",who:"Both",note:"Recto abdominal inferior. Si hay barra, colgado. Si no, tumbado en banco. Sube las rodillas controlado, baja sin dejar caer"},
-      {id:"m10",name:"Cable Woodchop / Oblique Twist",sets:"3",reps:"12/lado",rest:"45 sec",who:"Both",note:"Oblicuos y costados. Usa la polea baja o media. Rota el torso, no los pies. Este ejercicio define la cintura lateral"},
+      {id:"p1", name:"Dumbbell Bench Press", sets:"4", reps:"8-10", rest:"90 seg", note:"Último set cerca del fallo. Baja despacio (2 seg), explota arriba. Codos a 45° del cuerpo, no abiertos al máximo."},
+      {id:"p2", name:"Cable Fly", sets:"3", reps:"10-12", rest:"75 seg", note:"Movimiento lento y controlado. Siente el estiramiento en el pecho. No uses demasiado peso — la forma lo es todo aquí."},
+      {id:"p3", name:"Dumbbell Shoulder Press", sets:"3", reps:"8-10", rest:"90 seg", note:"Sentado o de pie. Palmas mirando al frente. No bloquees los codos arriba. Más rango natural que el Smith."},
+      {id:"p4", name:"Dumbbell Lateral Raise", sets:"3", reps:"12-15", rest:"60 seg", note:"Peso ligero, forma perfecta. Codos ligeramente doblados, sube hasta altura del hombro. No balancees el cuerpo."},
+      {id:"p5", name:"Cable Face Pull", sets:"3", reps:"12-15", rest:"60 seg", note:"NUNCA saltar este. Protege el manguito rotador a largo plazo. Polea alta, jala hacia la frente, codos arriba."},
+      {id:"p6", name:"Tricep Pushdown (cable)", sets:"3", reps:"10-12", rest:"60 seg", note:"Codos pegados al cuerpo, no los muevas. Solo extiende el antebrazo. Controla la subida."},
+      {id:"p7", name:"Plank", sets:"3", reps:"40-60 seg", rest:"45 seg", note:"Core apretado, no dejes caer las caderas. Progresión: añade 5 segundos cada semana."},
+      {id:"p8", name:"Hanging Knee Raise", sets:"3", reps:"12-15", rest:"45 seg", note:"Colgado de barra. Sube rodillas controlado, baja sin dejar caer. Si no hay barra, tumbado en banco."},
     ]
   },
   {
-    id:"wednesday",label:"DAY 2",day:"WEDNESDAY",focus:"Back + Biceps + Hamstrings + Glutes",
-    time:"~67 min",color:"#1A5E20",accent:"#27AE60",
+    id:"pull", label:"DÍA B", day:"PULL", focus:"Espalda · Bíceps · Antebrazo",
+    time:"~48 min", color:"#1A5E20", accent:"#27AE60",
     exercises:[
-      {id:"w1",name:"Lat Pulldown Machine",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Pull to the chest - NOT behind the neck. Protege la columna cervical"},
-      {id:"w2",name:"Seated Cable Row",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Squeeze shoulder blades together at the end of each rep"},
-      {id:"w3",name:"Smith Machine Bent-Over Row",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Compound movement. Espalda recta, no curvar la columna"},
-      {id:"w4",name:"Dumbbell One-Arm Row",sets:"3",reps:"12/side",rest:"60 sec",who:"Both",note:"Use the bench for support. Tira el codo hacia arriba, no el peso"},
-      {id:"w5",name:"Back Extension Machine",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Fortalece espalda baja. Peso ligero al principio. Previene dolores lumbares"},
-      {id:"w6",name:"Bicep Curl Machine",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Good isolation at the end of the session"},
-      {id:"w7",name:"Hammer Curl (Dumbbells)",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Palmas mirando hacia adentro. Trabaja el brachialis y el bicep"},
-      {id:"w8",name:"Seated Leg Curl Machine",sets:"3",reps:"12-15",rest:"60 sec",who:"Both",note:"Hámstrings. Segunda frecuencia semanal — clave para desarrollar glúteos. Control total en la bajada"},
-      {id:"w9",name:"Cable Kickback / Glute Machine",sets:"3",reps:"15/lado",rest:"60 sec",who:"Both",note:"Glúteos segunda vez en la semana. Aprieta arriba del todo en cada rep"},
-      {id:"w10",name:"Sumo Squat (Dumbbells)",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Pies abiertos, puntas hacia afuera. Activa glúteos e isquiotibiales desde otro ángulo"},
+      {id:"b1", name:"Lat Pulldown", sets:"4", reps:"8-10", rest:"90 seg", note:"ELLA: agarre cerrado o neutro (manos a ancho de hombros), codos pegados → activa centro de espalda, NO ensancha.\nÉL: agarre ancho (más allá de los hombros), codos hacia afuera → dorsal lateral, efecto V.\nJala al pecho, nunca detrás del cuello."},
+      {id:"b2", name:"Seated Cable Row", sets:"3", reps:"8-10", rest:"90 seg", note:"ELLA: agarre neutro cerrado (manija en V), codos pegados → grosor sin anchura.\nÉL: agarre ancho con barra, codos afuera → ancho + grosor.\nAprieta los omóplatos al final de cada rep."},
+      {id:"b3", name:"Rear Delt Fly (mancuerna)", sets:"3", reps:"12-15", rest:"60 seg", note:"Inclinado hacia adelante, brazos casi rectos. Levanta hacia los lados hasta altura de hombro. Trabaja deltoides posterior y trapecios."},
+      {id:"b4", name:"Back Extension Machine", sets:"3", reps:"12-15", rest:"60 seg", note:"Espalda baja. Peso ligero al principio. Sube hasta posición neutral, no hiperextiendas. Previene dolores lumbares."},
+      {id:"b5", name:"Dumbbell Curl", sets:"3", reps:"8-10", rest:"75 seg", note:"Alterna brazos o ambos a la vez. No balancees el cuerpo. Aprieta el bíceps arriba del todo."},
+      {id:"b6", name:"Hammer Curl", sets:"3", reps:"10-12", rest:"60 seg", note:"Palmas mirando hacia adentro durante todo el movimiento. Trabaja braquial y braquiorradial además del bíceps."},
+      {id:"b7", name:"Wrist Curl (mancuerna)", sets:"2", reps:"12-15", rest:"45 seg", note:"Antebrazo apoyado en el muslo o banco. Flexiona la muñeca hacia arriba. Peso muy ligero."},
+      {id:"b8", name:"Reverse Curl (mancuerna)", sets:"2", reps:"12-15", rest:"45 seg", note:"Igual que el curl normal pero palmas mirando hacia abajo. Trabaja el extensor del antebrazo. Peso más ligero que el curl normal."},
     ]
   },
   {
-    id:"friday",label:"DAY 3",day:"FRIDAY",focus:"Legs + Glutes + Shoulders + Core",
-    time:"~65 min",color:"#6E2F0A",accent:"#E67E22",
+    id:"lower", label:"DÍA C", day:"LOWER BODY", focus:"Quads · Hámstrings · Pantorrillas",
+    time:"~50 min", color:"#4A235A", accent:"#8E44AD",
     exercises:[
-      {id:"f1",name:"Leg Press Machine",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Feet shoulder-width apart. Do NOT lock your knees at the top"},
-      {id:"f2",name:"Smith Machine Squat",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Controlled descent, depth to 90 degrees. Espalda recta todo el tiempo"},
-      {id:"f3",name:"Leg Extension Machine",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Quad isolation. Aprieta al final del movimiento"},
-      {id:"f4",name:"Leg Curl Machine",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Hamstring focus. Control en la bajada"},
-      {id:"f5",name:"Hip Abductor Machine",sets:"4",reps:"15-20",rest:"60 sec",who:"ELLA",note:"Prioridad para ella. Outer glute and hip. 4 series porque responde mejor"},
-      {id:"f6",name:"Glute Kickback Machine",sets:"3",reps:"15",rest:"60 sec",who:"ELLA",note:"Squeeze at the top of every single rep. No rush"},
-      {id:"f7",name:"Hip Thrust / Glute Bridge",sets:"3",reps:"12",rest:"60 sec",who:"EL",note:"Glute development que faltaba en la rutina. Peso progresivo"},
-      {id:"f8",name:"Dumbbell Romanian Deadlift",sets:"3",reps:"12",rest:"60 sec",who:"Both",note:"Glutes + hamstrings. Espalda neutra, bajar hasta sentir el estiramiento"},
-      {id:"f9",name:"Lateral Raise (Dumbbells)",sets:"3",reps:"15",rest:"60 sec",who:"Both",note:"Slow and controlled. No swinging. Peso ligero con buena forma"},
-      {id:"f10",name:"Ab Crunch Machine",sets:"3",reps:"15-20",rest:"45 sec",who:"Both",note:"Exhala en cada rep. Aprieta el abdomen arriba del todo"},
-      {id:"f11",name:"Russian Twist (con peso)",sets:"3",reps:"20 (10/lado)",rest:"45 sec",who:"Both",note:"Oblicuos. Siéntate en el suelo, pies levantados, gira el torso de lado a lado con un disco o mancuerna ligera"},
+      {id:"l1", name:"Bulgarian Split Squat", sets:"3", reps:"8-10/pierna", rest:"90 seg", note:"Pie trasero en banco, pie delantero adelante. Baja hasta 90°, rodilla delantera no pasa la punta del pie. PRIMERAS SEMANAS: aprende el balance sin peso. El mejor ejercicio de pierna que existe."},
+      {id:"l2", name:"Leg Press", sets:"3", reps:"10-12", rest:"90 seg", note:"Pies a ancho de hombros. Baja hasta 90°. NO bloquees las rodillas arriba. Carga progresiva — tu ejercicio heavy de pierna."},
+      {id:"l3", name:"Leg Extension Machine", sets:"3", reps:"12-15", rest:"60 seg", note:"Aislamiento puro de quad. Aprieta arriba 1 segundo. Baja controlado. No uses impulso."},
+      {id:"l4", name:"Leg Curl Machine", sets:"3", reps:"10-12", rest:"75 seg", note:"El más efectivo para isquiotibial. Control total en la bajada. Último set cerca del fallo."},
+      {id:"l5", name:"Romanian Deadlift (mancuerna)", sets:"3", reps:"8-10", rest:"90 seg", note:"Espalda neutra siempre. Baja deslizando las mancuernas por las piernas hasta sentir estiramiento en hámstring. No dobles la espalda."},
+      {id:"l6", name:"Standing Calf Raise", sets:"3", reps:"12-15", rest:"60 seg", note:"De pie, sube en punta de pies lo más alto posible. Baja hasta sentir el estiramiento. Pausa 1 seg arriba."},
+      {id:"l7", name:"Seated Calf Raise", sets:"3", reps:"12-15", rest:"60 seg", note:"Trabaja el sóleo (músculo profundo), diferente al de pie. Rodillas a 90°. Pausa arriba y estiramiento abajo."},
+    ]
+  },
+  {
+    id:"glutes", label:"DÍA D", day:"GLÚTEOS + CORE", focus:"Glúteos · Aducción · Abducción · Core",
+    time:"~43-59 min", color:"#6E2F0A", accent:"#E67E22",
+    exercises:[
+      {id:"g1", name:"Hip Thrust (mancuerna o barra)", sets:"4", reps:"8-10", rest:"90 seg", note:"Ejercicio principal — hazlo pesado y con intención. Espalda apoyada en banco. Empuja caderas arriba y APRIETA el glúteo 1 segundo completo antes de bajar. Ese segundo lo cambia todo. Progresión semanal aquí es clave."},
+      {id:"g2", name:"Hip Abductor Machine (torso inclinado)", sets:"3", reps:"12-15", rest:"60 seg", note:"CLAVE: inclina el torso hacia adelante ~30° antes de abrir. Esa inclinación activa el glúteo medio mucho más que sentada recta. Aprieta en la apertura máxima."},
+      {id:"g3", name:"Hip Adductor Machine ó Sumo Squat puntas afuera", sets:"3", reps:"12-15", rest:"60 seg", note:"ESCOGE según el día:\n• Adductor Machine — aislamiento puro muslo interno, sentada.\n• Sumo Squat — pies bien abiertos, puntas afuera, mancuerna al centro. Más funcional.\nAlterna cuando quieras evolucionar."},
+      {id:"g4", name:"Polea abducción diagonal hacia atrás", sets:"3", reps:"12-15", rest:"60 seg", note:"Tobillera en polea baja. Párate de lado a la máquina y lleva la pierna hacia atrás en DIAGONAL — no recto atrás. Trabaja la parte alta y externa del glúteo que el kickback normal no alcanza. Aprieta 1 seg en la extensión máxima."},
+      {id:"g5", name:"Bulgarian Split Squat inclinado", sets:"3", reps:"8-10/pierna", rest:"90 seg", note:"Pie trasero en banco. CLAVE: inclina el torso ligeramente hacia adelante — transfiere el trabajo del quad al glúteo. Baja controlado hasta 90°. La inclinación es lo que lo diferencia del Bulgarian normal."},
+      {id:"g6", name:"Hiperextensión 1 seg arriba", sets:"3", reps:"12-15", rest:"60 seg", note:"OPCIONAL · Banco de hiperextensión a 45°. Baja el torso y sube. Al llegar arriba APRIETA el glúteo 1 segundo antes de bajar. Trabaja el glúteo en posición ESTIRADA — complemento perfecto del Hip Thrust. También fortalece espalda baja."},
+      {id:"g7", name:"Cable Woodchop", sets:"3", reps:"12/lado", rest:"60 seg", note:"OPCIONAL · Oblicuos. Párate de lado a la polea, agarra con ambas manos y jala en diagonal rotando el torso. Los pies no se mueven. Como cortando leña."},
+      {id:"g8", name:"Russian Twist (con peso)", sets:"3", reps:"20 (10/lado)", rest:"45 seg", note:"OPCIONAL · Oblicuos. Sentada en el suelo, pies levantados, disco o mancuerna ligera. Gira de lado a lado controlado."},
+      {id:"g9", name:"Hanging Knee Raise", sets:"3", reps:"12-15", rest:"45 seg", note:"OPCIONAL · Abdomen inferior. Colgado de barra, sube rodillas controlado. Si no hay barra, tumbado en banco."},
     ]
   }
 ];
 
-const TIPS=[
-  {icon:"🥩",title:"Proteina",body:"A los 50 el cuerpo necesita mas proteina que a los 30. Incluye proteina en cada comida principal. Sin buena nutricion, el gym hace solo la mitad del trabajo."},
-  {icon:"😴",title:"Sueno",body:"El musculo crece mientras duermen, no mientras entrenan. 7-8 horas minimo. Dormir mal = recuperacion lenta = resultados lentos."},
-  {icon:"📈",title:"Progresion",body:"Cada 6-8 semanas hay que subir el peso o cambiar algun ejercicio. Si no hay progresion, hay estancamiento. El cuerpo se adapta."},
-  {icon:"🧘",title:"Mentalidad",body:"No se comparen entre ustedes. El cuerpo de cada uno responde diferente. Compitanse a ustedes mismos. El progreso es individual."},
+const SUPPLEMENTAL = [
+  {
+    category: "PUSH — Pecho / Hombros / Tríceps",
+    color: "#2E86C1",
+    exercises: [
+      {id:"s_p1", name:"Overhead Tricep Extension (cable)", note:"Tríceps largo — el que da volumen al brazo. Polea alta, cuerda hacia atrás. Extiende completamente. Buena alternativa al Pushdown para variar."},
+      {id:"s_p2", name:"Pec Deck Machine", note:"Aislamiento de pecho. Squeeze al cerrar, retorno controlado. Buena opción si el Cable Fly está ocupado."},
+      {id:"s_p3", name:"Dumbbell Incline Press", note:"Banco inclinado 30-45°. Trabaja la parte superior del pecho que el press plano no llega tan bien. Añade definición arriba del pecho."},
+      {id:"s_p4", name:"Arnold Press", note:"Variación del Shoulder Press. Empieza con palmas hacia ti y rota al subir. Trabaja todas las cabezas del deltoides. Más completo que el press normal."},
+    ]
+  },
+  {
+    category: "PULL — Espalda / Bíceps",
+    color: "#27AE60",
+    exercises: [
+      {id:"s_b1", name:"Dumbbell One-Arm Row", note:"Apoyo en banco. Jala el codo hacia arriba, no el peso. Excelente para grosor de espalda unilateral. Lo quitamos por redundancia pero sigue siendo efectivo."},
+      {id:"s_b2", name:"Reverse Fly en máquina", note:"Deltoides posterior y romboides. Siéntate al revés en la máquina de pec deck. Abre los brazos hacia atrás. Mejora postura y contrarresta el trabajo de pecho."},
+      {id:"s_b3", name:"Cable Straight-Arm Pulldown", note:"De pie, polea alta, brazos casi rectos. Jala hacia abajo. Activa el dorsal sin involucrar bíceps — aislamiento puro de espalda."},
+      {id:"s_b4", name:"Concentration Curl", note:"Sentado, codo apoyado en el muslo. Máximo aislamiento de bíceps. Para cuando quieres pico y definición."},
+    ]
+  },
+  {
+    category: "LOWER BODY — Pierna",
+    color: "#8E44AD",
+    exercises: [
+      {id:"s_l1", name:"Goblet Squat (mancuerna)", note:"Mancuerna al pecho, pies a ancho de hombros. Baja lento y profundo. Buena opción de calentamiento antes del Bulgarian o cuando estás aprendiendo la sentadilla."},
+      {id:"s_l2", name:"Leg Press pies altos", note:"En el Leg Press, sube los pies hacia la parte alta de la plataforma. Activa más glúteo y hámstring que la posición normal. Buena variación para el Día C."},
+      {id:"s_l3", name:"Walking Lunges (mancuerna)", note:"Pasos alternos hacia adelante con mancuernas. Trabaja quad, glúteo y balance. Más dinámico que la estocada estática."},
+      {id:"s_l4", name:"Calf Raise en escalón", note:"Un pie en el borde de un escalón o plataforma. Rango de movimiento completo — más profundo que la versión en máquina. Muy efectivo para pantorrilla."},
+    ]
+  },
+  {
+    category: "GLÚTEOS",
+    color: "#E67E22",
+    exercises: [
+      {id:"s_g1", name:"Sentadilla + Reversa", note:"Sentadilla normal seguida inmediatamente de un paso atrás (reverse lunge). La sentadilla carga el glúteo y el paso atrás lo activa en extensión. 10 reps = 5 de cada lado."},
+      {id:"s_g2", name:"Puente de glúteo en suelo (Glute Bridge)", note:"Tumbada en el suelo, pies apoyados, sube las caderas. Versión más básica del Hip Thrust. Buena opción de calentamiento o activación antes del Hip Thrust."},
+      {id:"s_g3", name:"Cable Kickback recto", note:"Tobillera en polea baja. Lleva la pierna recto hacia atrás (vs la diagonal del ejercicio principal). Aislamiento del glúteo mayor. Aprieta 1 seg arriba."},
+      {id:"s_g4", name:"Frog Pump", note:"Tumbada en el suelo, plantas de los pies juntas formando diamante con las piernas. Sube las caderas. Activa el glúteo desde un ángulo diferente. Alta repetición — 20-25 reps."},
+    ]
+  },
+  {
+    category: "CORE",
+    color: "#C8AA64",
+    exercises: [
+      {id:"s_c1", name:"Dead Bug", note:"Tumbada boca arriba, brazos al techo, rodillas a 90°. Baja el brazo derecho y la pierna izquierda simultáneamente sin tocar el suelo. Alterna. Activa el core profundo."},
+      {id:"s_c2", name:"Ab Wheel (rueda abdominal)", note:"De rodillas, rueda hacia adelante lo más que puedas sin que la espalda baja toque. Regresa controlado. Uno de los mejores ejercicios de core que existen. Empieza con poco rango."},
+      {id:"s_c3", name:"Plank lateral", note:"De lado, apoyada en el antebrazo. Caderas arriba, cuerpo recto. Trabaja oblicuos y core lateral. 30-45 seg por lado."},
+      {id:"s_c4", name:"Bicycle Crunch", note:"Tumbada, manos detrás de la cabeza. Alterna codo al lado opuesto mientras extiendes la otra pierna. Lento y controlado — no es una carrera."},
+    ]
+  }
 ];
-const REST_OPTIONS=["Caminar 20-30 min","Stretching 15-20 min","Nadar / Bici recreativa","Yoga ligero en YouTube"];
-const DAY_LABELS={monday:"Lunes",wednesday:"Miércoles",friday:"Viernes"};
-const DAY_COLORS={monday:"#2E86C1",wednesday:"#27AE60",friday:"#E67E22"};
 
-function getTodayDay(){const d=new Date().getDay();if(d===1)return"monday";if(d===3)return"wednesday";if(d===5)return"friday";return null;}
-function getWeekKey(ds){const d=new Date(ds);const j=new Date(d.getFullYear(),0,1);const w=Math.ceil(((d-j)/86400000+j.getDay()+1)/7);return`${d.getFullYear()}-W${String(w).padStart(2,"0")}`;}
+const DAY_LABELS = {push:"Push",pull:"Pull",lower:"Lower Body",glutes:"Glúteos+Core"};
+const DAY_COLORS = {push:"#2E86C1",pull:"#27AE60",lower:"#8E44AD",glutes:"#E67E22"};
+
 function formatDate(ds){return new Date(ds).toLocaleDateString("es-ES",{weekday:"short",month:"short",day:"numeric"});}
+function getWeekKey(ds){const d=new Date(ds);const j=new Date(d.getFullYear(),0,1);const w=Math.ceil(((d-j)/86400000+j.getDay()+1)/7);return`${d.getFullYear()}-W${String(w).padStart(2,"0")}`;}
 
-// localStorage storage shim (works outside Claude.ai)
-const storage = {
-  get: (k) => { try { const v = localStorage.getItem(k); return v ? {value: v} : null; } catch(e){ return null; } },
-  set: (k, v) => { try { localStorage.setItem(k, v); return true; } catch(e){ return false; } },
+const store={
+  get:(k)=>{try{const v=localStorage.getItem(k);return v?{value:v}:null;}catch(e){return null;}},
+  set:(k,v)=>{try{localStorage.setItem(k,v);}catch(e){}}
 };
 
 function App(){
-  const [activeTab,setActiveTab]=React.useState(()=>getTodayDay()||"monday");
+  const [activeDay,setActiveDay]=React.useState("push");
   const [checked,setChecked]=React.useState({});
+  const [weights,setWeights]=React.useState({});
+  const [extras,setExtras]=React.useState({});
   const [completedDays,setCompletedDays]=React.useState({});
   const [history,setHistory]=React.useState([]);
+  const [suppChecked,setSuppChecked]=React.useState({});
   const [expandedNote,setExpandedNote]=React.useState(null);
+  const [expandedSupp,setExpandedSupp]=React.useState(null);
   const [view,setView]=React.useState("workout");
 
   React.useEffect(()=>{
-    try{const r=storage.get("wk_checked");if(r)setChecked(JSON.parse(r.value));}catch(e){}
-    try{const r=storage.get("wk_completed");if(r)setCompletedDays(JSON.parse(r.value));}catch(e){}
-    try{const r=storage.get("wk_history");if(r)setHistory(JSON.parse(r.value));}catch(e){}
+    const load=(k,fn)=>{try{const r=store.get(k);if(r)fn(JSON.parse(r.value));}catch(e){}};
+    load("vt_checked",setChecked);
+    load("vt_weights",setWeights);
+    load("vt_extras",setExtras);
+    load("vt_completed",setCompletedDays);
+    load("vt_history",setHistory);
+    load("vt_supp",setSuppChecked);
   },[]);
 
-  function toggleCheck(id){
-    const next={...checked,[id]:!checked[id]};
-    setChecked(next);
-    storage.set("wk_checked",JSON.stringify(next));
-  }
+  function toggleCheck(id){const n={...checked,[id]:!checked[id]};setChecked(n);store.set("vt_checked",JSON.stringify(n));}
+  function setWeight(id,val){const n={...weights,[id]:val};setWeights(n);store.set("vt_weights",JSON.stringify(n));}
+  function setExtra(dayId,val){const n={...extras,[dayId]:val};setExtras(n);store.set("vt_extras",JSON.stringify(n));}
+  function toggleSupp(id){const n={...suppChecked,[id]:!suppChecked[id]};setSuppChecked(n);store.set("vt_supp",JSON.stringify(n));}
 
-  function markDayDone(dayId){
+  function markDone(dayId){
     const today=new Date().toISOString().split("T")[0];
-    const nc={...completedDays,[dayId]:today};
-    setCompletedDays(nc);
+    const nc={...completedDays,[dayId]:today};setCompletedDays(nc);store.set("vt_completed",JSON.stringify(nc));
     const day=DAYS.find(d=>d.id===dayId);
     const done=day.exercises.filter(ex=>checked[ex.id]).length;
     const entry={dayId,date:today,total:day.exercises.length,done};
-    const nh=[entry,...history].slice(0,200);
-    setHistory(nh);
-    storage.set("wk_completed",JSON.stringify(nc));
-    storage.set("wk_history",JSON.stringify(nh));
+    const nh=[entry,...history].slice(0,300);setHistory(nh);store.set("vt_history",JSON.stringify(nh));
   }
 
   function resetDay(dayId){
     const day=DAYS.find(d=>d.id===dayId);
-    const nc={...checked};day.exercises.forEach(ex=>{delete nc[ex.id];});setChecked(nc);
-    const nd={...completedDays};delete nd[dayId];setCompletedDays(nd);
-    storage.set("wk_checked",JSON.stringify(nc));
-    storage.set("wk_completed",JSON.stringify(nd));
+    const nc={...checked};day.exercises.forEach(ex=>{delete nc[ex.id];});setChecked(nc);store.set("vt_checked",JSON.stringify(nc));
+    const nd={...completedDays};delete nd[dayId];setCompletedDays(nd);store.set("vt_completed",JSON.stringify(nd));
   }
 
+  const cd=DAYS.find(d=>d.id===activeDay);
+  const doneCount=cd.exercises.filter(ex=>checked[ex.id]).length;
+  const total=cd.exercises.length;
+  const pct=Math.round((doneCount/total)*100);
+
   const totalSessions=history.length;
-  const totalMinutes=history.reduce((a,e)=>a+(e.dayId==="monday"?60:e.dayId==="wednesday"?67:65),0);
+  const totalMins=history.reduce((a,e)=>a+(e.dayId==="push"?48:e.dayId==="pull"?48:e.dayId==="lower"?50:45),0);
   const weekMap={};history.forEach(e=>{const wk=getWeekKey(e.date);if(!weekMap[wk])weekMap[wk]=[];weekMap[wk].push(e);});
   const weeks=Object.entries(weekMap).sort((a,b)=>b[0].localeCompare(a[0]));
   let streak=0;for(const[,en]of weeks){if(en.length>=3)streak++;else break;}
   const last8=weeks.slice(0,8).reverse();
 
-  const cd=DAYS.find(d=>d.id===activeTab);
-  const doneCount=cd?cd.exercises.filter(ex=>checked[ex.id]).length:0;
-  const total=cd?cd.exercises.length:0;
-  const pct=total>0?Math.round((doneCount/total)*100):0;
+  const navBtn=(active)=>({flex:1,padding:"11px 2px",border:"none",background:"transparent",color:active?"#C8AA64":"#6A7D8F",fontSize:8,letterSpacing:1,cursor:"pointer",borderBottom:active?"2px solid #C8AA64":"2px solid transparent",fontFamily:"monospace",fontWeight:"bold"});
 
-  const S={
-    page:{minHeight:"100vh",background:"linear-gradient(135deg,#0D1B2A 0%,#1B2838 50%,#0D1B2A 100%)",paddingBottom:40},
-    hdr:{background:"linear-gradient(180deg,#0A1628 0%,transparent 100%)",padding:"24px 20px 16px",textAlign:"center",borderBottom:"1px solid rgba(200,170,100,0.2)"},
-    nav:{display:"flex",borderBottom:"1px solid rgba(200,170,100,0.15)",background:"rgba(0,0,0,0.3)"},
-    navBtn:(active)=>({flex:1,padding:"12px 4px",border:"none",background:"transparent",color:active?"#C8AA64":"#6A7D8F",fontSize:9,letterSpacing:2,cursor:"pointer",borderBottom:active?"2px solid #C8AA64":"2px solid transparent",fontFamily:"monospace",fontWeight:"bold"}),
-    card:{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:16,marginBottom:12},
-    sectionLabel:{fontSize:10,letterSpacing:4,color:"#6A7D8F",fontFamily:"monospace",marginBottom:12},
-  };
-
-  const TABS=[{id:"workout",label:"WORKOUT"},{id:"historial",label:"HISTORIAL"},{id:"tips",label:"TIPS"},{id:"rest",label:"DESCANSO"}];
+  const TABS=[{id:"workout",label:"WORKOUT"},{id:"suplementarios",label:"EXTRAS"},{id:"historial",label:"HISTORIAL"},{id:"tips",label:"TIPS"},{id:"rest",label:"DESCANSO"}];
 
   return(
-    <div style={S.page}>
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0D1B2A 0%,#1B2838 50%,#0D1B2A 100%)",paddingBottom:48}}>
+
       {/* Header */}
-      <div style={S.hdr}>
+      <div style={{background:"linear-gradient(180deg,#0A1628 0%,transparent 100%)",padding:"22px 20px 14px",textAlign:"center",borderBottom:"1px solid rgba(200,170,100,0.2)"}}>
         <div style={{fontSize:11,letterSpacing:6,color:"#C8AA64",marginBottom:4,fontFamily:"monospace"}}>VANTERRA GROUP</div>
-        <div style={{fontSize:26,fontWeight:"bold",letterSpacing:2,color:"#F0E6CC"}}>COUPLES WORKOUT</div>
-        <div style={{fontSize:12,color:"#8A9BB5",marginTop:4,letterSpacing:1}}>Planet Fitness · Mon / Wed / Fri</div>
+        <div style={{fontSize:24,fontWeight:"bold",letterSpacing:2,color:"#F0E6CC"}}>COUPLES WORKOUT</div>
+        <div style={{fontSize:11,color:"#8A9BB5",marginTop:4,letterSpacing:1}}>Push · Pull · Lower · Glúteos</div>
       </div>
 
       {/* Nav */}
-      <div style={S.nav}>
-        {TABS.map(t=><button key={t.id} onClick={()=>setView(t.id)} style={S.navBtn(view===t.id)}>{t.label}</button>)}
+      <div style={{display:"flex",borderBottom:"1px solid rgba(200,170,100,0.15)",background:"rgba(0,0,0,0.3)"}}>
+        {TABS.map(t=><button key={t.id} onClick={()=>setView(t.id)} style={navBtn(view===t.id)}>{t.label}</button>)}
       </div>
 
-      {/* WORKOUT */}
+      {/* ── WORKOUT ── */}
       {view==="workout"&&(
         <div>
-          <div style={{display:"flex",gap:8,padding:"16px 16px 8px"}}>
+          <div style={{display:"flex",gap:6,padding:"12px 12px 6px",overflowX:"auto"}}>
             {DAYS.map(day=>{
-              const isDone=completedDays[day.id];const isActive=activeTab===day.id;const isToday=getTodayDay()===day.id;
+              const isDone=completedDays[day.id];const isActive=activeDay===day.id;
               return(
-                <button key={day.id} onClick={()=>setActiveTab(day.id)} style={{flex:1,padding:"10px 4px",borderRadius:8,border:"none",background:isActive?`linear-gradient(135deg,${day.color},${day.accent})`:isDone?"rgba(50,80,50,0.4)":"rgba(255,255,255,0.06)",cursor:"pointer",position:"relative",boxShadow:isActive?`0 4px 20px ${day.accent}40`:"none"}}>
-                  <div style={{fontSize:9,letterSpacing:2,color:isActive?"rgba(255,255,255,0.7)":"#4A6070",fontFamily:"monospace"}}>{day.label}</div>
-                  <div style={{fontSize:11,fontWeight:"bold",color:isActive?"#fff":"#8A9BB5",marginTop:2}}>{day.day.slice(0,3)}</div>
-                  {isDone&&<div style={{position:"absolute",top:4,right:6,fontSize:10}}>✓</div>}
-                  {isToday&&!isActive&&<div style={{position:"absolute",top:-3,left:"50%",transform:"translateX(-50%)",width:6,height:6,borderRadius:"50%",background:"#C8AA64"}}/>}
+                <button key={day.id} onClick={()=>setActiveDay(day.id)} style={{flex:1,minWidth:66,padding:"9px 4px",borderRadius:8,border:"none",background:isActive?`linear-gradient(135deg,${day.color},${day.accent})`:isDone?"rgba(50,80,50,0.4)":"rgba(255,255,255,0.06)",cursor:"pointer",position:"relative",boxShadow:isActive?`0 4px 20px ${day.accent}40`:"none"}}>
+                  <div style={{fontSize:8,letterSpacing:2,color:isActive?"rgba(255,255,255,0.7)":"#4A6070",fontFamily:"monospace"}}>{day.label}</div>
+                  <div style={{fontSize:10,fontWeight:"bold",color:isActive?"#fff":"#8A9BB5",marginTop:2}}>{day.day}</div>
+                  {isDone&&<div style={{position:"absolute",top:3,right:5,fontSize:9,color:"#4CAF50"}}>✓</div>}
                 </button>
               );
             })}
           </div>
 
-          <div style={{padding:"8px 16px 12px"}}>
-            <div style={{background:`linear-gradient(135deg,${cd.color}CC,${cd.accent}44)`,borderRadius:10,padding:"14px 16px",border:`1px solid ${cd.accent}40`}}>
+          <div style={{padding:"6px 12px 10px"}}>
+            <div style={{background:`linear-gradient(135deg,${cd.color}CC,${cd.accent}44)`,borderRadius:10,padding:"13px 15px",border:`1px solid ${cd.accent}40`}}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
                 <div>
-                  <div style={{fontSize:18,fontWeight:"bold",color:"#F0E6CC",letterSpacing:1}}>{cd.day}</div>
-                  <div style={{fontSize:12,color:"#B8C8D8",marginTop:2}}>{cd.focus}</div>
-                  <div style={{fontSize:11,color:cd.accent,marginTop:4,fontFamily:"monospace"}}>{cd.time} · {total} exercises</div>
+                  <div style={{fontSize:17,fontWeight:"bold",color:"#F0E6CC",letterSpacing:1}}>{cd.day}</div>
+                  <div style={{fontSize:11,color:"#B8C8D8",marginTop:2}}>{cd.focus}</div>
+                  <div style={{fontSize:10,color:cd.accent,marginTop:3,fontFamily:"monospace"}}>{cd.time} · {total} ejercicios</div>
                 </div>
                 <div style={{textAlign:"right"}}>
-                  <div style={{fontSize:28,fontWeight:"bold",color:pct===100?"#4CAF50":"#C8AA64"}}>{pct}%</div>
-                  <div style={{fontSize:10,color:"#6A7D8F",fontFamily:"monospace"}}>{doneCount}/{total} done</div>
+                  <div style={{fontSize:26,fontWeight:"bold",color:pct===100?"#4CAF50":"#C8AA64"}}>{pct}%</div>
+                  <div style={{fontSize:10,color:"#6A7D8F",fontFamily:"monospace"}}>{doneCount}/{total}</div>
                 </div>
               </div>
-              <div style={{marginTop:10,height:4,background:"rgba(0,0,0,0.3)",borderRadius:4,overflow:"hidden"}}>
+              <div style={{marginTop:8,height:4,background:"rgba(0,0,0,0.3)",borderRadius:4,overflow:"hidden"}}>
                 <div style={{height:"100%",width:`${pct}%`,background:pct===100?"#4CAF50":`linear-gradient(90deg,${cd.color},${cd.accent})`,borderRadius:4,transition:"width 0.4s ease"}}/>
               </div>
             </div>
           </div>
 
-          <div style={{margin:"0 16px 10px",padding:"10px 14px",background:"rgba(200,170,100,0.1)",borderRadius:8,border:"1px solid rgba(200,170,100,0.25)",display:"flex",alignItems:"center",gap:10}}>
-            <span style={{fontSize:16}}>⚡</span>
-            <span style={{fontSize:12,color:"#C8AA64"}}><strong>WARMUP PRIMERO:</strong> 5 min en bicicleta o treadmill caminando antes de empezar</span>
+          <div style={{margin:"0 12px 10px",padding:"8px 14px",background:"rgba(200,170,100,0.1)",borderRadius:8,border:"1px solid rgba(200,170,100,0.25)",display:"flex",alignItems:"center",gap:10}}>
+            <span>⚡</span>
+            <span style={{fontSize:12,color:"#C8AA64"}}><strong>WARMUP:</strong> 5 min bicicleta o caminadora antes de empezar</span>
           </div>
 
-          <div style={{padding:"0 16px 16px"}}>
+          <div style={{padding:"0 12px"}}>
             {cd.exercises.map(ex=>{
-              const done=!!checked[ex.id];const noteOpen=expandedNote===ex.id;
-              const isElla=ex.who==="ELLA";const isEl=ex.who==="EL";
+              const done=!!checked[ex.id];const noteOpen=expandedNote===ex.id;const w=weights[ex.id]||"";
+              const isOptional=ex.note.startsWith("OPCIONAL");
               return(
-                <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:8,overflow:"hidden",opacity:done?0.75:1}}>
-                  <div style={{display:"flex",alignItems:"center",padding:"12px 14px",gap:12}}>
-                    <button onClick={()=>toggleCheck(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:14,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":isOptional?"rgba(200,170,100,0.04)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":isOptional?"1px solid rgba(200,170,100,0.2)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:7,overflow:"hidden",opacity:done?0.78:1}}>
+                  <div style={{display:"flex",alignItems:"center",padding:"10px 12px",gap:10}}>
+                    <button onClick={()=>toggleCheck(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
                       {done?"✓":""}
                     </button>
                     <div style={{flex:1,minWidth:0}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap"}}>
-                        <span style={{fontSize:14,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</span>
-                        {(isElla||isEl)&&<span style={{fontSize:9,fontFamily:"monospace",letterSpacing:1,padding:"2px 6px",borderRadius:4,background:isElla?"rgba(200,100,150,0.25)":"rgba(100,150,200,0.25)",color:isElla?"#E8A0C0":"#A0C8E8",border:isElla?"1px solid rgba(200,100,150,0.4)":"1px solid rgba(100,150,200,0.4)"}}>{ex.who}</span>}
+                      <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap",marginBottom:4}}>
+                        <span style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</span>
+                        {isOptional&&<span style={{fontSize:8,fontFamily:"monospace",padding:"2px 5px",borderRadius:4,background:"rgba(200,170,100,0.15)",color:"#C8AA64",border:"1px solid rgba(200,170,100,0.3)"}}>OPCIONAL</span>}
                       </div>
-                      <div style={{display:"flex",gap:12,marginTop:4}}>
-                        {[{l:"Sets",v:ex.sets},{l:"Reps",v:ex.reps},{l:"Rest",v:ex.rest}].map(s=>(
+                      <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+                        {[{l:"Sets",v:ex.sets},{l:"Reps",v:ex.reps},{l:"Descanso",v:ex.rest}].map(s=>(
                           <div key={s.l} style={{textAlign:"center"}}>
-                            <div style={{fontSize:13,fontWeight:"bold",color:cd.accent}}>{s.v}</div>
-                            <div style={{fontSize:9,color:"#5A6E80",fontFamily:"monospace",letterSpacing:1}}>{s.l}</div>
+                            <div style={{fontSize:12,fontWeight:"bold",color:cd.accent}}>{s.v}</div>
+                            <div style={{fontSize:8,color:"#5A6E80",fontFamily:"monospace"}}>{s.l}</div>
                           </div>
                         ))}
+                        <div style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:4}}>
+                          <input type="text" placeholder="peso" value={w} onChange={e=>setWeight(ex.id,e.target.value)}
+                            style={{width:58,padding:"4px 6px",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:6,color:"#C8AA64",fontSize:12,textAlign:"center",outline:"none"}}/>
+                          <span style={{fontSize:9,color:"#5A6E80"}}>lb/kg</span>
+                        </div>
                       </div>
                     </div>
-                    <button onClick={()=>setExpandedNote(noteOpen?null:ex.id)} style={{width:28,height:28,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:14,cursor:"pointer",flexShrink:0}}>i</button>
+                    <button onClick={()=>setExpandedNote(noteOpen?null:ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:13,cursor:"pointer",flexShrink:0}}>i</button>
                   </div>
-                  {noteOpen&&<div style={{padding:"10px 14px 12px 52px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:13,color:"#B8A880",lineHeight:1.5,fontStyle:"italic"}}>{ex.note}</div>}
+                  {noteOpen&&<div style={{padding:"9px 12px 11px 48px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:12,color:"#B8A880",lineHeight:1.6,fontStyle:"italic",whiteSpace:"pre-line"}}>{ex.note.replace(/^OPCIONAL · /,"")}</div>}
                 </div>
               );
             })}
           </div>
 
-          {pct===100&&!completedDays[cd.id]&&(
-            <div style={{padding:"0 16px 16px"}}>
-              <button onClick={()=>markDayDone(cd.id)} style={{width:"100%",padding:14,borderRadius:10,border:"none",background:"linear-gradient(135deg,#2E7D32,#4CAF50)",color:"#fff",fontSize:15,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",boxShadow:"0 4px 20px rgba(76,175,80,0.4)"}}>
-                ✓ MARCAR DIA COMPLETADO
+          {/* Extras */}
+          <div style={{margin:"8px 12px 10px",padding:"12px 14px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:10}}>
+            <div style={{fontSize:9,letterSpacing:2,color:"#6A7D8F",fontFamily:"monospace",marginBottom:8}}>EJERCICIOS ADICIONALES</div>
+            <textarea placeholder="Anota aquí cualquier ejercicio extra que hiciste hoy — nombre, peso, series..." value={extras[activeDay]||""} onChange={e=>setExtra(activeDay,e.target.value)}
+              style={{width:"100%",minHeight:66,background:"transparent",border:"none",color:"#9AAFC0",fontSize:13,resize:"vertical",outline:"none",lineHeight:1.6}}/>
+          </div>
+
+          {/* Complete */}
+          {!completedDays[cd.id]&&(
+            <div style={{padding:"0 12px 14px"}}>
+              <button onClick={()=>markDone(cd.id)} style={{width:"100%",padding:13,borderRadius:10,border:"none",background:pct===100?"linear-gradient(135deg,#2E7D32,#4CAF50)":"linear-gradient(135deg,#2C3E50,#4A6070)",color:"#fff",fontSize:13,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",boxShadow:pct===100?"0 4px 20px rgba(76,175,80,0.4)":"none"}}>
+                {pct===100?"✓ DÍA COMPLETADO":`MARCAR DÍA LISTO (${doneCount}/${total})`}
               </button>
             </div>
           )}
           {completedDays[cd.id]&&(
-            <div style={{padding:"0 16px 12px"}}>
-              <div style={{padding:"12px 16px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontSize:13,color:"#7CB87E"}}>Completado ✓</span>
+            <div style={{padding:"0 12px 12px"}}>
+              <div style={{padding:"11px 14px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <span style={{fontSize:12,color:"#7CB87E"}}>Completado ✓ — {formatDate(completedDays[cd.id])}</span>
                 <button onClick={()=>resetDay(cd.id)} style={{background:"transparent",border:"1px solid rgba(255,255,255,0.15)",color:"#5A6E80",fontSize:11,padding:"4px 10px",borderRadius:5,cursor:"pointer",fontFamily:"monospace"}}>reset</button>
               </div>
             </div>
           )}
-          <div style={{margin:"0 16px 24px",padding:"10px 14px",background:"rgba(46,134,193,0.1)",borderRadius:8,border:"1px solid rgba(46,134,193,0.2)"}}>
-            <span style={{fontSize:12,color:"#7FB3D3"}}><strong>CARDIO OPCIONAL:</strong> 10-15 min en elliptical o bike al final.</span>
+          <div style={{margin:"0 12px 24px",padding:"9px 14px",background:"rgba(46,134,193,0.1)",borderRadius:8,border:"1px solid rgba(46,134,193,0.2)"}}>
+            <span style={{fontSize:12,color:"#7FB3D3"}}><strong>CARDIO OPCIONAL:</strong> 10-15 min elliptical o bike al final.</span>
           </div>
         </div>
       )}
 
-      {/* HISTORIAL */}
+      {/* ── EXTRAS / SUPLEMENTARIOS ── */}
+      {view==="suplementarios"&&(
+        <div style={{padding:16}}>
+          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:6,fontFamily:"monospace",textAlign:"center"}}>EJERCICIOS SUPLEMENTARIOS</div>
+          <div style={{fontSize:12,color:"#6A7D8F",textAlign:"center",marginBottom:20,lineHeight:1.5}}>Márcalos si los haces. No son obligatorios — son para cuando tengas tiempo o quieras variar.</div>
+
+          {SUPPLEMENTAL.map(cat=>(
+            <div key={cat.category} style={{marginBottom:20}}>
+              <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
+                <div style={{width:4,height:20,borderRadius:2,background:cat.color}}/>
+                <div style={{fontSize:10,letterSpacing:2,color:cat.color,fontFamily:"monospace",fontWeight:"bold"}}>{cat.category}</div>
+              </div>
+              {cat.exercises.map(ex=>{
+                const done=!!suppChecked[ex.id];const noteOpen=expandedSupp===ex.id;
+                return(
+                  <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:8,overflow:"hidden",opacity:done?0.78:1}}>
+                    <div style={{display:"flex",alignItems:"center",padding:"11px 12px",gap:10}}>
+                      <button onClick={()=>toggleSupp(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                        {done?"✓":""}
+                      </button>
+                      <div style={{flex:1}}>
+                        <div style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</div>
+                      </div>
+                      <button onClick={()=>setExpandedSupp(noteOpen?null:ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:13,cursor:"pointer",flexShrink:0}}>i</button>
+                    </div>
+                    {noteOpen&&<div style={{padding:"9px 12px 11px 48px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:12,color:"#B8A880",lineHeight:1.6,fontStyle:"italic"}}>{ex.note}</div>}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+
+          <div style={{padding:"12px 14px",background:"rgba(200,170,100,0.08)",borderRadius:10,border:"1px solid rgba(200,170,100,0.2)"}}>
+            <div style={{fontSize:12,color:"#C8AA64",lineHeight:1.6}}>💡 <strong>Cómo usar esta lista:</strong> Si tienes 10-15 min extra o quieres sustituir un ejercicio principal que no puedes hacer ese día, escoge uno de aquí de la misma categoría. Márcalo y sigue.</div>
+          </div>
+        </div>
+      )}
+
+      {/* ── HISTORIAL ── */}
       {view==="historial"&&(
         <div style={{padding:16}}>
           <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:16,fontFamily:"monospace",textAlign:"center"}}>PROGRESO ACUMULADO</div>
           <div style={{display:"flex",gap:10,marginBottom:16}}>
-            {[{label:"Entrenos",value:totalSessions,icon:"🏋️"},{label:"Semanas completas",value:streak,icon:"🔥"},{label:"Horas totales",value:Math.round(totalMinutes/60),icon:"⏱️"}].map((s,i)=>(
-              <div key={i} style={{flex:1,background:"rgba(255,255,255,0.05)",border:"1px solid rgba(200,170,100,0.2)",borderRadius:10,padding:"14px 8px",textAlign:"center"}}>
+            {[{label:"Entrenos",value:totalSessions,icon:"🏋️"},{label:"Semanas 3+",value:streak,icon:"🔥"},{label:"Horas",value:Math.round(totalMins/60),icon:"⏱️"}].map((s,i)=>(
+              <div key={i} style={{flex:1,background:"rgba(255,255,255,0.05)",border:"1px solid rgba(200,170,100,0.2)",borderRadius:10,padding:"13px 8px",textAlign:"center"}}>
                 <div style={{fontSize:20}}>{s.icon}</div>
-                <div style={{fontSize:26,fontWeight:"bold",color:"#C8AA64",lineHeight:1.2}}>{s.value}</div>
-                <div style={{fontSize:9,color:"#5A6E80",fontFamily:"monospace",letterSpacing:1,marginTop:2}}>{s.label.toUpperCase()}</div>
+                <div style={{fontSize:24,fontWeight:"bold",color:"#C8AA64",lineHeight:1.2}}>{s.value}</div>
+                <div style={{fontSize:9,color:"#5A6E80",fontFamily:"monospace",marginTop:2}}>{s.label.toUpperCase()}</div>
               </div>
             ))}
           </div>
-
           {last8.length>0&&(
-            <div style={{...S.card,marginBottom:16}}>
-              <div style={S.sectionLabel}>ÚLTIMAS SEMANAS</div>
-              <div style={{display:"flex",gap:6,alignItems:"flex-end"}}>
+            <div style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:16,marginBottom:16}}>
+              <div style={{fontSize:10,letterSpacing:3,color:"#6A7D8F",fontFamily:"monospace",marginBottom:12}}>ÚLTIMAS SEMANAS</div>
+              <div style={{display:"flex",gap:5,alignItems:"flex-end"}}>
                 {last8.map(([wk,entries])=>{
-                  const n=entries.length;const full=n>=3;const h=20+n*14;
+                  const n=entries.length;const full=n>=3;const h=18+n*13;
                   return(
                     <div key={wk} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
-                      <div style={{fontSize:9,color:full?"#4CAF50":"#C8AA64",fontFamily:"monospace"}}>{n}/3</div>
-                      <div style={{width:"100%",height:h,borderRadius:5,background:full?"linear-gradient(180deg,#2E7D32,#4CAF50)":n===2?"linear-gradient(180deg,#7D6000,#C8AA64)":"linear-gradient(180deg,#5C2800,#E67E22)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12}}>{full?"✓":""}</div>
+                      <div style={{fontSize:9,color:full?"#4CAF50":"#C8AA64",fontFamily:"monospace"}}>{n}/4</div>
+                      <div style={{width:"100%",height:h,borderRadius:5,background:full?"linear-gradient(180deg,#2E7D32,#4CAF50)":n>=2?"linear-gradient(180deg,#7D6000,#C8AA64)":"linear-gradient(180deg,#5C2800,#E67E22)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11}}>{full?"✓":""}</div>
                       <div style={{fontSize:8,color:"#4A5E70",fontFamily:"monospace"}}>{wk.split("-W")[1]}w</div>
                     </div>
                   );
                 })}
               </div>
-              <div style={{display:"flex",gap:12,marginTop:12,justifyContent:"center",flexWrap:"wrap"}}>
-                {[{color:"#4CAF50",label:"Completa (3/3)"},{color:"#C8AA64",label:"Parcial (2/3)"},{color:"#E67E22",label:"Inicio (1/3)"}].map(l=>(
-                  <div key={l.label} style={{display:"flex",alignItems:"center",gap:4}}>
-                    <div style={{width:8,height:8,borderRadius:2,background:l.color}}/>
-                    <span style={{fontSize:9,color:"#5A6E80",fontFamily:"monospace"}}>{l.label}</span>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
-
           {totalSessions>0&&(
-            <div style={{background:"rgba(200,170,100,0.1)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:10,padding:"14px 16px",marginBottom:16,textAlign:"center"}}>
+            <div style={{background:"rgba(200,170,100,0.1)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:10,padding:"13px 16px",marginBottom:16,textAlign:"center"}}>
               <div style={{fontSize:13,color:"#C8AA64",lineHeight:1.6}}>
-                {streak>=4?`🏆 ${streak} semanas seguidas completas. Eso es consistencia de verdad.`:streak>=2?`💪 ${streak} semanas completas seguidas. Sigan así.`:totalSessions>=6?"📈 Más de 6 entrenos en el registro. El hábito se está formando.":totalSessions>=1?"🌱 El primer paso está dado. Cada entreno cuenta.":""}
+                {streak>=4?`🏆 ${streak} semanas seguidas completas. Consistencia real.`:streak>=2?`💪 ${streak} semanas seguidas. Sigan así.`:totalSessions>=6?"📈 Más de 6 entrenos. El hábito se está formando.":"🌱 Cada entreno cuenta. El historial se construye aquí."}
               </div>
             </div>
           )}
-
-          <div style={{...S.card,padding:0,overflow:"hidden"}}>
-            <div style={{padding:"12px 16px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10,letterSpacing:3,color:"#6A7D8F",fontFamily:"monospace"}}>REGISTRO DETALLADO</div>
+          <div style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:12,overflow:"hidden"}}>
+            <div style={{padding:"11px 16px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10,letterSpacing:3,color:"#6A7D8F",fontFamily:"monospace"}}>REGISTRO DETALLADO</div>
             {history.length===0?(
-              <div style={{padding:"32px 16px",textAlign:"center",color:"#4A5E70",fontSize:13}}>
-                Aún no hay entrenos registrados.<br/>
-                <span style={{fontSize:11,color:"#3A4E60"}}>Completa tu primer día y aparecerá aquí.</span>
-              </div>
+              <div style={{padding:"28px 16px",textAlign:"center",color:"#4A5E70",fontSize:13}}>Aún no hay entrenos registrados.<br/><span style={{fontSize:11,color:"#3A4E60"}}>Completa tu primer día y aparecerá aquí.</span></div>
             ):weeks.map(([wk,entries])=>{
               const full=entries.length>=3;
               return(
                 <div key={wk}>
-                  <div style={{padding:"8px 16px",background:"rgba(0,0,0,0.2)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                  <div style={{padding:"7px 16px",background:"rgba(0,0,0,0.2)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                     <span style={{fontSize:10,color:"#5A6E80",fontFamily:"monospace",letterSpacing:2}}>SEMANA {wk.split("-W")[1]}</span>
                     {full&&<span style={{fontSize:10,color:"#4CAF50",fontFamily:"monospace"}}>COMPLETA ✓</span>}
                   </div>
                   {entries.sort((a,b)=>b.date.localeCompare(a.date)).map((e,i)=>(
-                    <div key={i} style={{padding:"12px 16px",borderBottom:"1px solid rgba(255,255,255,0.04)",display:"flex",alignItems:"center",gap:12}}>
+                    <div key={i} style={{padding:"11px 16px",borderBottom:"1px solid rgba(255,255,255,0.04)",display:"flex",alignItems:"center",gap:12}}>
                       <div style={{width:10,height:10,borderRadius:"50%",background:DAY_COLORS[e.dayId],flexShrink:0}}/>
                       <div style={{flex:1}}>
                         <div style={{fontSize:13,color:"#D0C0A0"}}>{DAY_LABELS[e.dayId]}</div>
@@ -348,44 +431,44 @@ function App(){
         </div>
       )}
 
-      {/* TIPS */}
+      {/* ── TIPS ── */}
       {view==="tips"&&(
         <div style={{padding:16}}>
-          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:16,fontFamily:"monospace",textAlign:"center"}}>FACTORES FUERA DEL GYM</div>
-          {TIPS.map((tip,i)=>(
-            <div key={i} style={S.card}>
+          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:16,fontFamily:"monospace",textAlign:"center"}}>FUERA DEL GYM</div>
+          {[
+            {icon:"🥩",title:"Proteína",body:"Sin proteína suficiente el músculo no se construye. Apunta a 1.6–2g por kg de peso corporal al día. Incluye proteína en cada comida principal."},
+            {icon:"😴",title:"Sueño",body:"El músculo crece mientras duermen, no mientras entrenan. Mínimo 7-8 horas. No hay suplemento que compense el mal sueño."},
+            {icon:"📈",title:"Progresión",body:"Si no estás subiendo peso o reps cada 1-2 semanas, el cuerpo dejó de adaptarse. Usa el campo de peso en cada ejercicio para rastrear esto."},
+            {icon:"🧘",title:"Mentalidad",body:"No se comparen entre ustedes. El progreso es individual. Compítanse a ustedes mismos, no al otro."},
+          ].map((tip,i)=>(
+            <div key={i} style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:"15px",marginBottom:12}}>
               <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:8}}>
-                <span style={{fontSize:24}}>{tip.icon}</span>
-                <span style={{fontSize:16,fontWeight:"bold",color:"#C8AA64",letterSpacing:1}}>{tip.title.toUpperCase()}</span>
+                <span style={{fontSize:22}}>{tip.icon}</span>
+                <span style={{fontSize:14,fontWeight:"bold",color:"#C8AA64",letterSpacing:1}}>{tip.title.toUpperCase()}</span>
               </div>
-              <p style={{margin:0,fontSize:14,color:"#9AAFC0",lineHeight:1.6}}>{tip.body}</p>
+              <p style={{margin:0,fontSize:13,color:"#9AAFC0",lineHeight:1.6}}>{tip.body}</p>
             </div>
           ))}
-          <div style={{padding:"14px 16px",background:"rgba(200,170,100,0.1)",borderRadius:10,border:"1px solid rgba(200,170,100,0.3)"}}>
+          <div style={{padding:"13px 16px",background:"rgba(200,170,100,0.1)",borderRadius:10,border:"1px solid rgba(200,170,100,0.3)"}}>
             <div style={{fontSize:13,color:"#C8AA64",fontWeight:"bold",marginBottom:6}}>REGLA DE ORO</div>
-            <div style={{fontSize:13,color:"#9AAFC0",lineHeight:1.6}}>Consistencia supera la intensidad. Tres dias bien hechos cada semana durante meses les va a cambiar el cuerpo completamente.</div>
+            <div style={{fontSize:13,color:"#9AAFC0",lineHeight:1.6}}>Consistencia supera la intensidad. Tres o cuatro días bien hechos cada semana durante meses les va a cambiar el cuerpo.</div>
           </div>
         </div>
       )}
 
-      {/* DESCANSO */}
+      {/* ── DESCANSO ── */}
       {view==="rest"&&(
         <div style={{padding:16}}>
-          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:8,fontFamily:"monospace",textAlign:"center"}}>DIAS LIBRES</div>
-          <div style={{fontSize:13,color:"#6A7D8F",textAlign:"center",marginBottom:20,lineHeight:1.5}}>Escojan lo que apetezca. La idea es moverse sin estresarle el cuerpo.</div>
-          {REST_OPTIONS.map((opt,i)=>(
-            <div key={i} style={{...S.card,padding:"16px 18px",display:"flex",alignItems:"center",gap:14}}>
-              <div style={{width:32,height:32,borderRadius:8,background:"rgba(58,124,165,0.3)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16}}>
-                {["🚶","🧘","🏊","🧘"][i]}
-              </div>
-              <span style={{fontSize:15,color:"#C8D8E8"}}>{opt}</span>
-            </div>
+          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:8,fontFamily:"monospace",textAlign:"center"}}>DÍAS LIBRES</div>
+          <div style={{fontSize:13,color:"#6A7D8F",textAlign:"center",marginBottom:20,lineHeight:1.5}}>Moverse sin estresarle el cuerpo. Recuperación activa.</div>
+          {["🚶 Caminar 20-30 min","🧘 Stretching 15-20 min","🏊 Nadar / Bici recreativa","🧘 Yoga ligero en YouTube"].map((opt,i)=>(
+            <div key={i} style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:10,padding:"14px 16px",marginBottom:10,fontSize:15,color:"#C8D8E8"}}>{opt}</div>
           ))}
-          <div style={{padding:"14px 16px",background:"rgba(50,80,50,0.3)",borderRadius:10,border:"1px solid rgba(76,175,80,0.25)",marginTop:6}}>
-            <div style={{fontSize:12,color:"#7CB87E",lineHeight:1.6}}><strong>Dia libre ideal:</strong> Una caminata de 20-25 minutos + 10 minutos de estiramiento.</div>
+          <div style={{marginTop:6,padding:"13px 16px",background:"rgba(50,80,50,0.3)",borderRadius:10,border:"1px solid rgba(76,175,80,0.25)"}}>
+            <div style={{fontSize:12,color:"#7CB87E",lineHeight:1.6}}><strong>Ideal:</strong> Caminata 20-25 min + 10 min de estiramiento.</div>
           </div>
-          <div style={{marginTop:10,padding:"14px 16px",background:"rgba(200,100,50,0.1)",borderRadius:10,border:"1px solid rgba(200,100,50,0.2)"}}>
-            <div style={{fontSize:12,color:"#D4876A",lineHeight:1.6}}><strong>Evitar en dias libres:</strong> Ejercicio intenso o querer recuperar una sesion perdida. El descanso es parte del proceso.</div>
+          <div style={{marginTop:10,padding:"13px 16px",background:"rgba(200,100,50,0.1)",borderRadius:10,border:"1px solid rgba(200,100,50,0.2)"}}>
+            <div style={{fontSize:12,color:"#D4876A",lineHeight:1.6}}><strong>Evitar:</strong> Ejercicio intenso los días libres. El músculo crece descansando.</div>
           </div>
         </div>
       )}
