@@ -6,15 +6,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="theme-color" content="#0D1B2A"/>
-<title>El Workout · Vanterra</title>
+<title>IDY Workout · Vanterra</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 body { background: #0D1B2A; font-family: Georgia,'Times New Roman',serif; color: #E8DCC8; overscroll-behavior: none; }
-button { font-family: inherit; }
-input, textarea { font-family: inherit; }
+button { font-family: inherit; } input, textarea { font-family: inherit; }
 ::-webkit-scrollbar { display: none; }
 </style>
 </head>
@@ -48,7 +47,7 @@ const DAYS = [
       {id:"b5", name:"Dumbbell Curl", sets:"3", reps:"8-10", rest:"75 seg", note:"Alterna brazos o ambos a la vez. No balancees el cuerpo. Aprieta el bíceps arriba del todo."},
       {id:"b6", name:"Hammer Curl", sets:"3", reps:"10-12", rest:"60 seg", note:"Palmas mirando hacia adentro durante todo el movimiento. Trabaja braquial y braquiorradial además del bíceps."},
       {id:"b7", name:"Wrist Curl (mancuerna)", sets:"2", reps:"12-15", rest:"45 seg", note:"Antebrazo apoyado en el muslo o banco. Flexiona la muñeca hacia arriba. Peso muy ligero."},
-      {id:"b8", name:"Reverse Curl (mancuerna)", sets:"2", reps:"12-15", rest:"45 seg", note:"Igual que el curl normal pero palmas mirando hacia abajo. Trabaja el extensor del antebrazo. Peso más ligero que el curl normal."},
+      {id:"b8", name:"Reverse Curl (mancuerna)", sets:"2", reps:"12-15", rest:"45 seg", note:"Igual que el curl normal pero palmas mirando hacia abajo. Trabaja el extensor del antebrazo."},
     ]
   },
   {
@@ -68,78 +67,59 @@ const DAYS = [
     id:"glutes", label:"DÍA D", day:"GLÚTEOS + CORE", focus:"Glúteos · Aducción · Abducción · Core",
     time:"~43-59 min", color:"#6E2F0A", accent:"#E67E22",
     exercises:[
-      {id:"g1", name:"Hip Thrust (mancuerna o barra)", sets:"4", reps:"8-10", rest:"90 seg", note:"Ejercicio principal — hazlo pesado y con intención. Espalda apoyada en banco. Empuja caderas arriba y APRIETA el glúteo 1 segundo completo antes de bajar. Ese segundo lo cambia todo. Progresión semanal aquí es clave."},
+      {id:"g1", name:"Hip Thrust (mancuerna o barra)", sets:"4", reps:"8-10", rest:"90 seg", note:"Ejercicio principal — hazlo pesado y con intención. Espalda apoyada en banco. Empuja caderas arriba y APRIETA el glúteo 1 segundo completo antes de bajar. Ese segundo lo cambia todo."},
       {id:"g2", name:"Hip Abductor Machine (torso inclinado)", sets:"3", reps:"12-15", rest:"60 seg", note:"CLAVE: inclina el torso hacia adelante ~30° antes de abrir. Esa inclinación activa el glúteo medio mucho más que sentada recta. Aprieta en la apertura máxima."},
       {id:"g3", name:"Hip Adductor Machine ó Sumo Squat puntas afuera", sets:"3", reps:"12-15", rest:"60 seg", note:"ESCOGE según el día:\n• Adductor Machine — aislamiento puro muslo interno, sentada.\n• Sumo Squat — pies bien abiertos, puntas afuera, mancuerna al centro. Más funcional.\nAlterna cuando quieras evolucionar."},
-      {id:"g4", name:"Polea abducción diagonal hacia atrás", sets:"3", reps:"12-15", rest:"60 seg", note:"Tobillera en polea baja. Párate de lado a la máquina y lleva la pierna hacia atrás en DIAGONAL — no recto atrás. Trabaja la parte alta y externa del glúteo que el kickback normal no alcanza. Aprieta 1 seg en la extensión máxima."},
-      {id:"g5", name:"Bulgarian Split Squat inclinado", sets:"3", reps:"8-10/pierna", rest:"90 seg", note:"Pie trasero en banco. CLAVE: inclina el torso ligeramente hacia adelante — transfiere el trabajo del quad al glúteo. Baja controlado hasta 90°. La inclinación es lo que lo diferencia del Bulgarian normal."},
-      {id:"g6", name:"Hiperextensión 1 seg arriba", sets:"3", reps:"12-15", rest:"60 seg", note:"OPCIONAL · Banco de hiperextensión a 45°. Baja el torso y sube. Al llegar arriba APRIETA el glúteo 1 segundo antes de bajar. Trabaja el glúteo en posición ESTIRADA — complemento perfecto del Hip Thrust. También fortalece espalda baja."},
-      {id:"g7", name:"Cable Woodchop", sets:"3", reps:"12/lado", rest:"60 seg", note:"OPCIONAL · Oblicuos. Párate de lado a la polea, agarra con ambas manos y jala en diagonal rotando el torso. Los pies no se mueven. Como cortando leña."},
+      {id:"g4", name:"Polea abducción diagonal hacia atrás", sets:"3", reps:"12-15", rest:"60 seg", note:"Tobillera en polea baja. Párate de lado a la máquina y lleva la pierna hacia atrás en DIAGONAL. Trabaja la parte alta y externa del glúteo. Aprieta 1 seg en la extensión máxima."},
+      {id:"g5", name:"Bulgarian Split Squat inclinado", sets:"3", reps:"8-10/pierna", rest:"90 seg", note:"Pie trasero en banco. CLAVE: inclina el torso ligeramente hacia adelante — transfiere el trabajo del quad al glúteo. Baja controlado hasta 90°."},
+      {id:"g6", name:"Hiperextensión 1 seg arriba", sets:"3", reps:"12-15", rest:"60 seg", note:"OPCIONAL · Banco de hiperextensión a 45°. Baja el torso y sube. Al llegar arriba APRIETA el glúteo 1 segundo. Trabaja el glúteo en posición ESTIRADA — complemento perfecto del Hip Thrust."},
+      {id:"g7", name:"Cable Woodchop", sets:"3", reps:"12/lado", rest:"60 seg", note:"OPCIONAL · Oblicuos. Párate de lado a la polea, agarra con ambas manos y jala en diagonal rotando el torso. Los pies no se mueven."},
       {id:"g8", name:"Russian Twist (con peso)", sets:"3", reps:"20 (10/lado)", rest:"45 seg", note:"OPCIONAL · Oblicuos. Sentada en el suelo, pies levantados, disco o mancuerna ligera. Gira de lado a lado controlado."},
       {id:"g9", name:"Hanging Knee Raise", sets:"3", reps:"12-15", rest:"45 seg", note:"OPCIONAL · Abdomen inferior. Colgado de barra, sube rodillas controlado. Si no hay barra, tumbado en banco."},
     ]
   }
 ];
 
-const EMPTY_FREE_EX = () => ({id: Date.now().toString(), name:"", weight:"", sets:"", reps:"", done:false});
-
 const SUPPLEMENTAL = [
-  {
-    category: "PUSH — Pecho / Hombros / Tríceps",
-    color: "#2E86C1",
-    exercises: [
-      {id:"s_p1", name:"Overhead Tricep Extension (cable)", note:"Tríceps largo — el que da volumen al brazo. Polea alta, cuerda hacia atrás. Extiende completamente. Buena alternativa al Pushdown para variar."},
-      {id:"s_p2", name:"Pec Deck Machine", note:"Aislamiento de pecho. Squeeze al cerrar, retorno controlado. Buena opción si el Cable Fly está ocupado."},
-      {id:"s_p3", name:"Dumbbell Incline Press", note:"Banco inclinado 30-45°. Trabaja la parte superior del pecho que el press plano no llega tan bien. Añade definición arriba del pecho."},
-      {id:"s_p4", name:"Arnold Press", note:"Variación del Shoulder Press. Empieza con palmas hacia ti y rota al subir. Trabaja todas las cabezas del deltoides. Más completo que el press normal."},
-    ]
-  },
-  {
-    category: "PULL — Espalda / Bíceps",
-    color: "#27AE60",
-    exercises: [
-      {id:"s_b1", name:"Dumbbell One-Arm Row", note:"Apoyo en banco. Jala el codo hacia arriba, no el peso. Excelente para grosor de espalda unilateral. Lo quitamos por redundancia pero sigue siendo efectivo."},
-      {id:"s_b2", name:"Reverse Fly en máquina", note:"Deltoides posterior y romboides. Siéntate al revés en la máquina de pec deck. Abre los brazos hacia atrás. Mejora postura y contrarresta el trabajo de pecho."},
-      {id:"s_b3", name:"Cable Straight-Arm Pulldown", note:"De pie, polea alta, brazos casi rectos. Jala hacia abajo. Activa el dorsal sin involucrar bíceps — aislamiento puro de espalda."},
-      {id:"s_b4", name:"Concentration Curl", note:"Sentado, codo apoyado en el muslo. Máximo aislamiento de bíceps. Para cuando quieres pico y definición."},
-    ]
-  },
-  {
-    category: "LOWER BODY — Pierna",
-    color: "#8E44AD",
-    exercises: [
-      {id:"s_l1", name:"Goblet Squat (mancuerna)", note:"Mancuerna al pecho, pies a ancho de hombros. Baja lento y profundo. Buena opción de calentamiento antes del Bulgarian o cuando estás aprendiendo la sentadilla."},
-      {id:"s_l2", name:"Leg Press pies altos", note:"En el Leg Press, sube los pies hacia la parte alta de la plataforma. Activa más glúteo y hámstring que la posición normal. Buena variación para el Día C."},
-      {id:"s_l3", name:"Walking Lunges (mancuerna)", note:"Pasos alternos hacia adelante con mancuernas. Trabaja quad, glúteo y balance. Más dinámico que la estocada estática."},
-      {id:"s_l4", name:"Calf Raise en escalón", note:"Un pie en el borde de un escalón o plataforma. Rango de movimiento completo — más profundo que la versión en máquina. Muy efectivo para pantorrilla."},
-    ]
-  },
-  {
-    category: "GLÚTEOS",
-    color: "#E67E22",
-    exercises: [
-      {id:"s_g1", name:"Sentadilla + Reversa", note:"Sentadilla normal seguida inmediatamente de un paso atrás (reverse lunge). La sentadilla carga el glúteo y el paso atrás lo activa en extensión. 10 reps = 5 de cada lado."},
-      {id:"s_g2", name:"Puente de glúteo en suelo (Glute Bridge)", note:"Tumbada en el suelo, pies apoyados, sube las caderas. Versión más básica del Hip Thrust. Buena opción de calentamiento o activación antes del Hip Thrust."},
-      {id:"s_g3", name:"Cable Kickback recto", note:"Tobillera en polea baja. Lleva la pierna recto hacia atrás (vs la diagonal del ejercicio principal). Aislamiento del glúteo mayor. Aprieta 1 seg arriba."},
-      {id:"s_g4", name:"Frog Pump", note:"Tumbada en el suelo, plantas de los pies juntas formando diamante con las piernas. Sube las caderas. Activa el glúteo desde un ángulo diferente. Alta repetición — 20-25 reps."},
-    ]
-  },
-  {
-    category: "CORE",
-    color: "#C8AA64",
-    exercises: [
-      {id:"s_c1", name:"Dead Bug", note:"Tumbada boca arriba, brazos al techo, rodillas a 90°. Baja el brazo derecho y la pierna izquierda simultáneamente sin tocar el suelo. Alterna. Activa el core profundo."},
-      {id:"s_c2", name:"Ab Wheel (rueda abdominal)", note:"De rodillas, rueda hacia adelante lo más que puedas sin que la espalda baja toque. Regresa controlado. Uno de los mejores ejercicios de core que existen. Empieza con poco rango."},
-      {id:"s_c3", name:"Plank lateral", note:"De lado, apoyada en el antebrazo. Caderas arriba, cuerpo recto. Trabaja oblicuos y core lateral. 30-45 seg por lado."},
-      {id:"s_c4", name:"Bicycle Crunch", note:"Tumbada, manos detrás de la cabeza. Alterna codo al lado opuesto mientras extiendes la otra pierna. Lento y controlado — no es una carrera."},
-    ]
-  }
+  { category:"PUSH — Pecho / Hombros / Tríceps", color:"#2E86C1", exercises:[
+    {id:"s_p1", name:"Overhead Tricep Extension (cable)", note:"Tríceps largo — el que da volumen al brazo. Polea alta, cuerda hacia atrás. Extiende completamente."},
+    {id:"s_p2", name:"Pec Deck Machine", note:"Aislamiento de pecho. Squeeze al cerrar, retorno controlado."},
+    {id:"s_p3", name:"Dumbbell Incline Press", note:"Banco inclinado 30-45°. Trabaja la parte superior del pecho. Añade definición arriba del pecho."},
+    {id:"s_p4", name:"Arnold Press", note:"Empieza con palmas hacia ti y rota al subir. Trabaja todas las cabezas del deltoides."},
+  ]},
+  { category:"PULL — Espalda / Bíceps", color:"#27AE60", exercises:[
+    {id:"s_b1", name:"Dumbbell One-Arm Row", note:"Apoyo en banco. Jala el codo hacia arriba, no el peso. Excelente para grosor de espalda unilateral."},
+    {id:"s_b2", name:"Reverse Fly en máquina", note:"Deltoides posterior y romboides. Siéntate al revés en la máquina de pec deck. Abre los brazos hacia atrás."},
+    {id:"s_b3", name:"Cable Straight-Arm Pulldown", note:"De pie, polea alta, brazos casi rectos. Jala hacia abajo. Aislamiento puro de dorsal sin bíceps."},
+    {id:"s_b4", name:"Concentration Curl", note:"Sentado, codo apoyado en el muslo. Máximo aislamiento de bíceps. Para pico y definición."},
+  ]},
+  { category:"LOWER BODY — Pierna", color:"#8E44AD", exercises:[
+    {id:"s_l1", name:"Goblet Squat (mancuerna)", note:"Mancuerna al pecho, pies a ancho de hombros. Baja lento y profundo. Buena opción de calentamiento."},
+    {id:"s_l2", name:"Leg Press pies altos", note:"Sube los pies hacia la parte alta de la plataforma. Activa más glúteo y hámstring que la posición normal."},
+    {id:"s_l3", name:"Walking Lunges (mancuerna)", note:"Pasos alternos hacia adelante con mancuernas. Trabaja quad, glúteo y balance."},
+    {id:"s_l4", name:"Calf Raise en escalón", note:"Un pie en el borde de un escalón. Rango de movimiento completo — más profundo que la versión en máquina."},
+  ]},
+  { category:"GLÚTEOS", color:"#E67E22", exercises:[
+    {id:"s_g1", name:"Sentadilla + Reversa", note:"Sentadilla normal seguida de un paso atrás. La sentadilla carga el glúteo y el paso atrás lo activa en extensión. 10 reps = 5 de cada lado."},
+    {id:"s_g2", name:"Puente de glúteo en suelo (Glute Bridge)", note:"Tumbada en el suelo, pies apoyados, sube las caderas. Versión más básica del Hip Thrust. Buena activación."},
+    {id:"s_g3", name:"Cable Kickback recto", note:"Tobillera en polea baja. Lleva la pierna recto hacia atrás. Aislamiento del glúteo mayor. Aprieta 1 seg arriba."},
+    {id:"s_g4", name:"Frog Pump", note:"Tumbada, plantas de los pies juntas formando diamante. Sube las caderas. Alta repetición — 20-25 reps."},
+  ]},
+  { category:"CORE", color:"#C8AA64", exercises:[
+    {id:"s_c1", name:"Dead Bug", note:"Tumbada boca arriba, brazos al techo, rodillas a 90°. Baja brazo derecho y pierna izquierda simultáneamente. Activa el core profundo."},
+    {id:"s_c2", name:"Ab Wheel", note:"De rodillas, rueda hacia adelante lo más que puedas sin que la espalda baja toque. Regresa controlado. Uno de los mejores ejercicios de core."},
+    {id:"s_c3", name:"Plank lateral", note:"De lado, apoyada en el antebrazo. Caderas arriba, cuerpo recto. Trabaja oblicuos y core lateral. 30-45 seg por lado."},
+    {id:"s_c4", name:"Bicycle Crunch", note:"Tumbada, manos detrás de la cabeza. Alterna codo al lado opuesto mientras extiendes la otra pierna. Lento y controlado."},
+  ]},
 ];
 
+const ALL_DAYS = [...DAYS, {id:"free", label:"DÍA E", day:"LIBRE", focus:"Circuito · Sesión libre", time:"flexible", color:"#4A3728", accent:"#C8AA64"}];
 const DAY_LABELS = {push:"Push",pull:"Pull",lower:"Lower Body",glutes:"Glúteos+Core",free:"Sesión Libre"};
 const DAY_COLORS = {push:"#2E86C1",pull:"#27AE60",lower:"#8E44AD",glutes:"#E67E22",free:"#C8AA64"};
 
 function formatDate(ds){return new Date(ds).toLocaleDateString("es-ES",{weekday:"short",month:"short",day:"numeric"});}
+function formatTime(ts){if(!ts)return"--:--";const d=new Date(ts);return d.toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});}
+function formatDuration(ms){if(!ms||ms<=0)return"--";const m=Math.round(ms/60000);return m<60?`${m} min`:`${Math.floor(m/60)}h ${m%60}min`;}
 function getWeekKey(ds){const d=new Date(ds);const j=new Date(d.getFullYear(),0,1);const w=Math.ceil(((d-j)/86400000+j.getDay()+1)/7);return`${d.getFullYear()}-W${String(w).padStart(2,"0")}`;}
 
 const store={
@@ -155,11 +135,12 @@ function App(){
   const [completedDays,setCompletedDays]=React.useState({});
   const [history,setHistory]=React.useState([]);
   const [suppChecked,setSuppChecked]=React.useState({});
+  const [sessionStarts,setSessionStarts]=React.useState({});
+  const [freeDay,setFreeDay]=React.useState({exercises:[],completed:false,date:"",startTime:null});
   const [expandedNote,setExpandedNote]=React.useState(null);
   const [expandedSupp,setExpandedSupp]=React.useState(null);
   const [view,setView]=React.useState("workout");
-
-  const [freeDay, setFreeDay] = React.useState({exercises:[], completed:false, date:""});
+  const [now,setNow]=React.useState(Date.now());
 
   React.useEffect(()=>{
     const load=(k,fn)=>{try{const r=store.get(k);if(r)fn(JSON.parse(r.value));}catch(e){}};
@@ -169,52 +150,38 @@ function App(){
     load("vt_completed",setCompletedDays);
     load("vt_history",setHistory);
     load("vt_supp",setSuppChecked);
+    load("vt_session_starts",setSessionStarts);
     load("vt_freeday",setFreeDay);
   },[]);
 
-  function saveFreeDay(updated){setFreeDay(updated);store.set("vt_freeday",JSON.stringify(updated));}
+  // Live timer tick
+  React.useEffect(()=>{
+    const t=setInterval(()=>setNow(Date.now()),30000);
+    return()=>clearInterval(t);
+  },[]);
 
-  function addFreeEx(){
-    const updated={...freeDay,exercises:[...freeDay.exercises,EMPTY_FREE_EX()]};
-    saveFreeDay(updated);
+  function toggleCheck(id){
+    const n={...checked,[id]:!checked[id]};
+    setChecked(n);store.set("vt_checked",JSON.stringify(n));
+    // Record session start on first check
+    if(n[id]&&!sessionStarts[activeDay]){
+      const ns={...sessionStarts,[activeDay]:Date.now()};
+      setSessionStarts(ns);store.set("vt_session_starts",JSON.stringify(ns));
+    }
   }
-  function updateFreeEx(id,field,val){
-    const updated={...freeDay,exercises:freeDay.exercises.map(ex=>ex.id===id?{...ex,[field]:val}:ex)};
-    saveFreeDay(updated);
-  }
-  function toggleFreeEx(id){
-    const updated={...freeDay,exercises:freeDay.exercises.map(ex=>ex.id===id?{...ex,done:!ex.done}:ex)};
-    saveFreeDay(updated);
-  }
-  function deleteFreeEx(id){
-    const updated={...freeDay,exercises:freeDay.exercises.filter(ex=>ex.id!==id)};
-    saveFreeDay(updated);
-  }
-  function markFreeDone(){
-    const today=new Date().toISOString().split("T")[0];
-    const done=freeDay.exercises.filter(ex=>ex.done).length;
-    const entry={dayId:"free",date:today,total:freeDay.exercises.length,done};
-    const nh=[entry,...history].slice(0,300);
-    setHistory(nh);store.set("vt_history",JSON.stringify(nh));
-    const updated={...freeDay,completed:true,date:today};
-    saveFreeDay(updated);
-  }
-  function resetFreeDay(){
-    const updated={exercises:freeDay.exercises.map(ex=>({...ex,done:false})),completed:false,date:""};
-    saveFreeDay(updated);
-  }
-
-  function toggleCheck(id){const n={...checked,[id]:!checked[id]};setChecked(n);store.set("vt_checked",JSON.stringify(n));}
   function setWeight(id,val){const n={...weights,[id]:val};setWeights(n);store.set("vt_weights",JSON.stringify(n));}
   function setExtra(dayId,val){const n={...extras,[dayId]:val};setExtras(n);store.set("vt_extras",JSON.stringify(n));}
   function toggleSupp(id){const n={...suppChecked,[id]:!suppChecked[id]};setSuppChecked(n);store.set("vt_supp",JSON.stringify(n));}
 
   function markDone(dayId){
     const today=new Date().toISOString().split("T")[0];
+    const endTime=Date.now();
+    const startTime=sessionStarts[dayId]||null;
+    const duration=startTime?endTime-startTime:null;
     const nc={...completedDays,[dayId]:today};setCompletedDays(nc);store.set("vt_completed",JSON.stringify(nc));
     const day=DAYS.find(d=>d.id===dayId);
     const done=day.exercises.filter(ex=>checked[ex.id]).length;
-    const entry={dayId,date:today,total:day.exercises.length,done};
+    const entry={dayId,date:today,total:day.exercises.length,done,startTime,endTime,duration};
     const nh=[entry,...history].slice(0,300);setHistory(nh);store.set("vt_history",JSON.stringify(nh));
   }
 
@@ -222,23 +189,47 @@ function App(){
     const day=DAYS.find(d=>d.id===dayId);
     const nc={...checked};day.exercises.forEach(ex=>{delete nc[ex.id];});setChecked(nc);store.set("vt_checked",JSON.stringify(nc));
     const nd={...completedDays};delete nd[dayId];setCompletedDays(nd);store.set("vt_completed",JSON.stringify(nd));
+    const ns={...sessionStarts};delete ns[dayId];setSessionStarts(ns);store.set("vt_session_starts",JSON.stringify(ns));
   }
 
-  const cd=DAYS.find(d=>d.id===activeDay);
-  const doneCount=cd.exercises.filter(ex=>checked[ex.id]).length;
-  const total=cd.exercises.length;
-  const pct=Math.round((doneCount/total)*100);
+  // Free day functions
+  function saveFreeDay(u){setFreeDay(u);store.set("vt_freeday",JSON.stringify(u));}
+  function addFreeEx(){saveFreeDay({...freeDay,exercises:[...freeDay.exercises,{id:Date.now().toString(),name:"",weight:"",sets:"",reps:"",done:false}]});}
+  function updateFreeEx(id,field,val){saveFreeDay({...freeDay,exercises:freeDay.exercises.map(ex=>ex.id===id?{...ex,[field]:val}:ex)});}
+  function toggleFreeEx(id){
+    const updated={...freeDay,exercises:freeDay.exercises.map(ex=>ex.id===id?{...ex,done:!ex.done}:ex)};
+    // Start timer on first check
+    if(!freeDay.startTime){updated.startTime=Date.now();}
+    saveFreeDay(updated);
+  }
+  function deleteFreeEx(id){saveFreeDay({...freeDay,exercises:freeDay.exercises.filter(ex=>ex.id!==id)});}
+  function markFreeDone(){
+    const today=new Date().toISOString().split("T")[0];
+    const endTime=Date.now();
+    const duration=freeDay.startTime?endTime-freeDay.startTime:null;
+    const done=freeDay.exercises.filter(ex=>ex.done).length;
+    const entry={dayId:"free",date:today,total:freeDay.exercises.length,done,startTime:freeDay.startTime,endTime,duration};
+    const nh=[entry,...history].slice(0,300);setHistory(nh);store.set("vt_history",JSON.stringify(nh));
+    saveFreeDay({...freeDay,completed:true,date:today,endTime});
+  }
+  function resetFreeDay(){saveFreeDay({...freeDay,exercises:freeDay.exercises.map(ex=>({...ex,done:false})),completed:false,date:"",startTime:null,endTime:null});}
+
+  const cd=activeDay==="free"?null:DAYS.find(d=>d.id===activeDay);
+  const doneCount=cd?cd.exercises.filter(ex=>checked[ex.id]).length:0;
+  const total=cd?cd.exercises.length:0;
+  const pct=total>0?Math.round((doneCount/total)*100):0;
+  const sessionStart=sessionStarts[activeDay]||null;
+  const liveMinutes=sessionStart&&!completedDays[activeDay]?Math.round((now-sessionStart)/60000):null;
 
   const totalSessions=history.length;
-  const totalMins=history.reduce((a,e)=>a+(e.dayId==="push"?48:e.dayId==="pull"?48:e.dayId==="lower"?50:45),0);
+  const totalRealMins=history.reduce((a,e)=>a+(e.duration?Math.round(e.duration/60000):0),0);
   const weekMap={};history.forEach(e=>{const wk=getWeekKey(e.date);if(!weekMap[wk])weekMap[wk]=[];weekMap[wk].push(e);});
   const weeks=Object.entries(weekMap).sort((a,b)=>b[0].localeCompare(a[0]));
   let streak=0;for(const[,en]of weeks){if(en.length>=3)streak++;else break;}
   const last8=weeks.slice(0,8).reverse();
 
   const navBtn=(active)=>({flex:1,padding:"11px 2px",border:"none",background:"transparent",color:active?"#C8AA64":"#6A7D8F",fontSize:8,letterSpacing:1,cursor:"pointer",borderBottom:active?"2px solid #C8AA64":"2px solid transparent",fontFamily:"monospace",fontWeight:"bold"});
-
-  const TABS=[{id:"workout",label:"WORKOUT"},{id:"libre",label:"DÍA E"},{id:"suplementarios",label:"EXTRAS"},{id:"historial",label:"HISTORIAL"},{id:"tips",label:"TIPS"},{id:"rest",label:"DESCANSO"}];
+  const TABS=[{id:"workout",label:"WORKOUT"},{id:"suplementarios",label:"EXTRAS"},{id:"historial",label:"HISTORIAL"},{id:"tips",label:"TIPS"},{id:"rest",label:"DESCANSO"}];
 
   return(
     <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0D1B2A 0%,#1B2838 50%,#0D1B2A 100%)",paddingBottom:48}}>
@@ -246,8 +237,8 @@ function App(){
       {/* Header */}
       <div style={{background:"linear-gradient(180deg,#0A1628 0%,transparent 100%)",padding:"22px 20px 14px",textAlign:"center",borderBottom:"1px solid rgba(200,170,100,0.2)"}}>
         <div style={{fontSize:11,letterSpacing:6,color:"#C8AA64",marginBottom:4,fontFamily:"monospace"}}>VANTERRA GROUP</div>
-        <div style={{fontSize:24,fontWeight:"bold",letterSpacing:2,color:"#F0E6CC"}}>EL WORKOUT</div>
-        <div style={{fontSize:11,color:"#8A9BB5",marginTop:4,letterSpacing:1}}>Push · Pull · Lower · Glúteos</div>
+        <div style={{fontSize:24,fontWeight:"bold",letterSpacing:2,color:"#F0E6CC"}}>IDY WORKOUT</div>
+        <div style={{fontSize:11,color:"#8A9BB5",marginTop:4,letterSpacing:1}}>Push · Pull · Lower · Glúteos · Libre</div>
       </div>
 
       {/* Nav */}
@@ -258,174 +249,190 @@ function App(){
       {/* ── WORKOUT ── */}
       {view==="workout"&&(
         <div>
-          <div style={{display:"flex",gap:6,padding:"12px 12px 6px",overflowX:"auto"}}>
-            {DAYS.map(day=>{
-              const isDone=completedDays[day.id];const isActive=activeDay===day.id;
+          {/* Day tabs — all 5 days including Día E */}
+          <div style={{display:"flex",gap:5,padding:"12px 10px 6px",overflowX:"auto"}}>
+            {ALL_DAYS.map(day=>{
+              const isDone=day.id==="free"?freeDay.completed:completedDays[day.id];
+              const isActive=activeDay===day.id;
               return(
-                <button key={day.id} onClick={()=>setActiveDay(day.id)} style={{flex:1,minWidth:66,padding:"9px 4px",borderRadius:8,border:"none",background:isActive?`linear-gradient(135deg,${day.color},${day.accent})`:isDone?"rgba(50,80,50,0.4)":"rgba(255,255,255,0.06)",cursor:"pointer",position:"relative",boxShadow:isActive?`0 4px 20px ${day.accent}40`:"none"}}>
-                  <div style={{fontSize:8,letterSpacing:2,color:isActive?"rgba(255,255,255,0.7)":"#4A6070",fontFamily:"monospace"}}>{day.label}</div>
-                  <div style={{fontSize:10,fontWeight:"bold",color:isActive?"#fff":"#8A9BB5",marginTop:2}}>{day.day}</div>
-                  {isDone&&<div style={{position:"absolute",top:3,right:5,fontSize:9,color:"#4CAF50"}}>✓</div>}
+                <button key={day.id} onClick={()=>setActiveDay(day.id)} style={{flex:1,minWidth:58,padding:"9px 3px",borderRadius:8,border:"none",background:isActive?`linear-gradient(135deg,${day.color},${day.accent})`:isDone?"rgba(50,80,50,0.4)":"rgba(255,255,255,0.06)",cursor:"pointer",position:"relative",boxShadow:isActive?`0 4px 20px ${day.accent}40`:"none"}}>
+                  <div style={{fontSize:7,letterSpacing:1.5,color:isActive?"rgba(255,255,255,0.7)":"#4A6070",fontFamily:"monospace"}}>{day.label}</div>
+                  <div style={{fontSize:9,fontWeight:"bold",color:isActive?"#fff":"#8A9BB5",marginTop:2}}>{day.day}</div>
+                  {isDone&&<div style={{position:"absolute",top:3,right:4,fontSize:9,color:"#4CAF50"}}>✓</div>}
                 </button>
               );
             })}
           </div>
 
-          <div style={{padding:"6px 12px 10px"}}>
-            <div style={{background:`linear-gradient(135deg,${cd.color}CC,${cd.accent}44)`,borderRadius:10,padding:"13px 15px",border:`1px solid ${cd.accent}40`}}>
-              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
-                <div>
-                  <div style={{fontSize:17,fontWeight:"bold",color:"#F0E6CC",letterSpacing:1}}>{cd.day}</div>
-                  <div style={{fontSize:11,color:"#B8C8D8",marginTop:2}}>{cd.focus}</div>
-                  <div style={{fontSize:10,color:cd.accent,marginTop:3,fontFamily:"monospace"}}>{cd.time} · {total} ejercicios</div>
-                </div>
-                <div style={{textAlign:"right"}}>
-                  <div style={{fontSize:26,fontWeight:"bold",color:pct===100?"#4CAF50":"#C8AA64"}}>{pct}%</div>
-                  <div style={{fontSize:10,color:"#6A7D8F",fontFamily:"monospace"}}>{doneCount}/{total}</div>
-                </div>
-              </div>
-              <div style={{marginTop:8,height:4,background:"rgba(0,0,0,0.3)",borderRadius:4,overflow:"hidden"}}>
-                <div style={{height:"100%",width:`${pct}%`,background:pct===100?"#4CAF50":`linear-gradient(90deg,${cd.color},${cd.accent})`,borderRadius:4,transition:"width 0.4s ease"}}/>
-              </div>
-            </div>
-          </div>
-
-          <div style={{margin:"0 12px 10px",padding:"8px 14px",background:"rgba(200,170,100,0.1)",borderRadius:8,border:"1px solid rgba(200,170,100,0.25)",display:"flex",alignItems:"center",gap:10}}>
-            <span>⚡</span>
-            <span style={{fontSize:12,color:"#C8AA64"}}><strong>WARMUP:</strong> 5 min bicicleta o caminadora antes de empezar</span>
-          </div>
-
-          <div style={{padding:"0 12px"}}>
-            {cd.exercises.map(ex=>{
-              const done=!!checked[ex.id];const noteOpen=expandedNote===ex.id;const w=weights[ex.id]||"";
-              const isOptional=ex.note.startsWith("OPCIONAL");
-              return(
-                <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":isOptional?"rgba(200,170,100,0.04)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":isOptional?"1px solid rgba(200,170,100,0.2)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:7,overflow:"hidden",opacity:done?0.78:1}}>
-                  <div style={{display:"flex",alignItems:"center",padding:"10px 12px",gap:10}}>
-                    <button onClick={()=>toggleCheck(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                      {done?"✓":""}
-                    </button>
-                    <div style={{flex:1,minWidth:0}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap",marginBottom:4}}>
-                        <span style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</span>
-                        {isOptional&&<span style={{fontSize:8,fontFamily:"monospace",padding:"2px 5px",borderRadius:4,background:"rgba(200,170,100,0.15)",color:"#C8AA64",border:"1px solid rgba(200,170,100,0.3)"}}>OPCIONAL</span>}
-                      </div>
-                      <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
-                        {[{l:"Sets",v:ex.sets},{l:"Reps",v:ex.reps},{l:"Descanso",v:ex.rest}].map(s=>(
-                          <div key={s.l} style={{textAlign:"center"}}>
-                            <div style={{fontSize:12,fontWeight:"bold",color:cd.accent}}>{s.v}</div>
-                            <div style={{fontSize:8,color:"#5A6E80",fontFamily:"monospace"}}>{s.l}</div>
-                          </div>
-                        ))}
-                        <div style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:4}}>
-                          <input type="text" placeholder="peso" value={w} onChange={e=>setWeight(ex.id,e.target.value)}
-                            style={{width:58,padding:"4px 6px",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:6,color:"#C8AA64",fontSize:12,textAlign:"center",outline:"none"}}/>
-                          <span style={{fontSize:9,color:"#5A6E80"}}>lb/kg</span>
+          {/* ── Regular day view ── */}
+          {activeDay!=="free"&&cd&&(
+            <div>
+              <div style={{padding:"6px 12px 10px"}}>
+                <div style={{background:`linear-gradient(135deg,${cd.color}CC,${cd.accent}44)`,borderRadius:10,padding:"13px 15px",border:`1px solid ${cd.accent}40`}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                    <div>
+                      <div style={{fontSize:17,fontWeight:"bold",color:"#F0E6CC",letterSpacing:1}}>{cd.day}</div>
+                      <div style={{fontSize:11,color:"#B8C8D8",marginTop:2}}>{cd.focus}</div>
+                      <div style={{fontSize:10,color:cd.accent,marginTop:3,fontFamily:"monospace"}}>{cd.time} · {total} ejercicios</div>
+                      {sessionStart&&(
+                        <div style={{fontSize:10,color:"#C8AA64",marginTop:3,fontFamily:"monospace"}}>
+                          ⏱ Inicio: {formatTime(sessionStart)}{liveMinutes!==null?` · ${liveMinutes} min`:""}
                         </div>
-                      </div>
+                      )}
                     </div>
-                    <button onClick={()=>setExpandedNote(noteOpen?null:ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:13,cursor:"pointer",flexShrink:0}}>i</button>
+                    <div style={{textAlign:"right"}}>
+                      <div style={{fontSize:26,fontWeight:"bold",color:pct===100?"#4CAF50":"#C8AA64"}}>{pct}%</div>
+                      <div style={{fontSize:10,color:"#6A7D8F",fontFamily:"monospace"}}>{doneCount}/{total}</div>
+                    </div>
                   </div>
-                  {noteOpen&&<div style={{padding:"9px 12px 11px 48px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:12,color:"#B8A880",lineHeight:1.6,fontStyle:"italic",whiteSpace:"pre-line"}}>{ex.note.replace(/^OPCIONAL · /,"")}</div>}
+                  <div style={{marginTop:8,height:4,background:"rgba(0,0,0,0.3)",borderRadius:4,overflow:"hidden"}}>
+                    <div style={{height:"100%",width:`${pct}%`,background:pct===100?"#4CAF50":`linear-gradient(90deg,${cd.color},${cd.accent})`,borderRadius:4,transition:"width 0.4s ease"}}/>
+                  </div>
                 </div>
-              );
-            })}
-          </div>
-
-          {/* Extras */}
-          <div style={{margin:"8px 12px 10px",padding:"12px 14px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:10}}>
-            <div style={{fontSize:9,letterSpacing:2,color:"#6A7D8F",fontFamily:"monospace",marginBottom:8}}>EJERCICIOS ADICIONALES</div>
-            <textarea placeholder="Anota aquí cualquier ejercicio extra que hiciste hoy — nombre, peso, series..." value={extras[activeDay]||""} onChange={e=>setExtra(activeDay,e.target.value)}
-              style={{width:"100%",minHeight:66,background:"transparent",border:"none",color:"#9AAFC0",fontSize:13,resize:"vertical",outline:"none",lineHeight:1.6}}/>
-          </div>
-
-          {/* Complete */}
-          {!completedDays[cd.id]&&(
-            <div style={{padding:"0 12px 14px"}}>
-              <button onClick={()=>markDone(cd.id)} style={{width:"100%",padding:13,borderRadius:10,border:"none",background:pct===100?"linear-gradient(135deg,#2E7D32,#4CAF50)":"linear-gradient(135deg,#2C3E50,#4A6070)",color:"#fff",fontSize:13,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",boxShadow:pct===100?"0 4px 20px rgba(76,175,80,0.4)":"none"}}>
-                {pct===100?"✓ DÍA COMPLETADO":`MARCAR DÍA LISTO (${doneCount}/${total})`}
-              </button>
-            </div>
-          )}
-          {completedDays[cd.id]&&(
-            <div style={{padding:"0 12px 12px"}}>
-              <div style={{padding:"11px 14px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontSize:12,color:"#7CB87E"}}>Completado ✓ — {formatDate(completedDays[cd.id])}</span>
-                <button onClick={()=>resetDay(cd.id)} style={{background:"transparent",border:"1px solid rgba(255,255,255,0.15)",color:"#5A6E80",fontSize:11,padding:"4px 10px",borderRadius:5,cursor:"pointer",fontFamily:"monospace"}}>reset</button>
               </div>
-            </div>
-          )}
-          <div style={{margin:"0 12px 24px",padding:"9px 14px",background:"rgba(46,134,193,0.1)",borderRadius:8,border:"1px solid rgba(46,134,193,0.2)"}}>
-            <span style={{fontSize:12,color:"#7FB3D3"}}><strong>CARDIO OPCIONAL:</strong> 10-15 min elliptical o bike al final.</span>
-          </div>
-        </div>
-      )}
 
-      {/* ── DÍA E — LIBRE ── */}
-      {view==="libre"&&(
-        <div style={{padding:16}}>
-          <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:4,fontFamily:"monospace",textAlign:"center"}}>DÍA E — SESIÓN LIBRE</div>
-          <div style={{fontSize:12,color:"#6A7D8F",textAlign:"center",marginBottom:16}}>Circuito, máquinas sueltas, lo que sea. Construye tu sesión aquí.</div>
-
-          {/* Exercise list */}
-          {freeDay.exercises.map((ex,idx)=>(
-            <div key={ex.id} style={{background:ex.done?"rgba(40,80,40,0.35)":"rgba(255,255,255,0.04)",border:ex.done?"1px solid rgba(76,175,80,0.4)":"1px solid rgba(255,255,255,0.08)",borderRadius:10,marginBottom:8,padding:"12px 12px",opacity:ex.done?0.78:1}}>
-              <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
-                <button onClick={()=>toggleFreeEx(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:ex.done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                  {ex.done?"✓":""}
-                </button>
-                <input
-                  type="text" placeholder="Nombre del ejercicio..."
-                  value={ex.name} onChange={e=>updateFreeEx(ex.id,"name",e.target.value)}
-                  style={{flex:1,background:"transparent",border:"none",borderBottom:"1px solid rgba(255,255,255,0.15)",color:"#E8DCC8",fontSize:13,padding:"2px 4px",outline:"none"}}
-                />
-                <button onClick={()=>deleteFreeEx(ex.id)} style={{width:24,height:24,borderRadius:6,border:"none",background:"rgba(200,60,60,0.2)",color:"#E88080",fontSize:14,cursor:"pointer",flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center"}}>×</button>
+              <div style={{margin:"0 12px 10px",padding:"8px 14px",background:"rgba(200,170,100,0.1)",borderRadius:8,border:"1px solid rgba(200,170,100,0.25)",display:"flex",alignItems:"center",gap:10}}>
+                <span>⚡</span>
+                <span style={{fontSize:12,color:"#C8AA64"}}><strong>WARMUP:</strong> 5 min bicicleta o caminadora antes de empezar</span>
               </div>
-              <div style={{display:"flex",gap:8,paddingLeft:36}}>
-                {[{field:"sets",placeholder:"Series",label:"Series"},{field:"reps",placeholder:"Reps",label:"Reps"},{field:"weight",placeholder:"Peso",label:"Peso"}].map(f=>(
-                  <div key={f.field} style={{flex:1}}>
-                    <div style={{fontSize:8,color:"#5A6E80",fontFamily:"monospace",marginBottom:3}}>{f.label.toUpperCase()}</div>
-                    <input
-                      type="text" placeholder={f.placeholder}
-                      value={ex[f.field]} onChange={e=>updateFreeEx(ex.id,f.field,e.target.value)}
-                      style={{width:"100%",padding:"5px 8px",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(200,170,100,0.25)",borderRadius:6,color:"#C8AA64",fontSize:12,textAlign:"center",outline:"none"}}
-                    />
+
+              <div style={{padding:"0 12px"}}>
+                {cd.exercises.map(ex=>{
+                  const done=!!checked[ex.id];const noteOpen=expandedNote===ex.id;const w=weights[ex.id]||"";
+                  const isOptional=ex.note.startsWith("OPCIONAL");
+                  return(
+                    <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":isOptional?"rgba(200,170,100,0.04)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":isOptional?"1px solid rgba(200,170,100,0.2)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:7,overflow:"hidden",opacity:done?0.78:1}}>
+                      <div style={{display:"flex",alignItems:"center",padding:"10px 12px",gap:10}}>
+                        <button onClick={()=>toggleCheck(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{done?"✓":""}</button>
+                        <div style={{flex:1,minWidth:0}}>
+                          <div style={{display:"flex",alignItems:"center",gap:6,flexWrap:"wrap",marginBottom:4}}>
+                            <span style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</span>
+                            {isOptional&&<span style={{fontSize:8,fontFamily:"monospace",padding:"2px 5px",borderRadius:4,background:"rgba(200,170,100,0.15)",color:"#C8AA64",border:"1px solid rgba(200,170,100,0.3)"}}>OPCIONAL</span>}
+                          </div>
+                          <div style={{display:"flex",gap:10,alignItems:"center",flexWrap:"wrap"}}>
+                            {[{l:"Sets",v:ex.sets},{l:"Reps",v:ex.reps},{l:"Descanso",v:ex.rest}].map(s=>(
+                              <div key={s.l} style={{textAlign:"center"}}>
+                                <div style={{fontSize:12,fontWeight:"bold",color:cd.accent}}>{s.v}</div>
+                                <div style={{fontSize:8,color:"#5A6E80",fontFamily:"monospace"}}>{s.l}</div>
+                              </div>
+                            ))}
+                            <div style={{marginLeft:"auto",display:"flex",alignItems:"center",gap:4}}>
+                              <input type="text" placeholder="peso" value={w} onChange={e=>setWeight(ex.id,e.target.value)}
+                                style={{width:56,padding:"4px 6px",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:6,color:"#C8AA64",fontSize:12,textAlign:"center",outline:"none"}}/>
+                              <span style={{fontSize:9,color:"#5A6E80"}}>lb/kg</span>
+                            </div>
+                          </div>
+                        </div>
+                        <button onClick={()=>setExpandedNote(noteOpen?null:ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:13,cursor:"pointer",flexShrink:0}}>i</button>
+                      </div>
+                      {noteOpen&&<div style={{padding:"9px 12px 11px 48px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:12,color:"#B8A880",lineHeight:1.6,fontStyle:"italic",whiteSpace:"pre-line"}}>{ex.note.replace(/^OPCIONAL · /,"")}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div style={{margin:"8px 12px 10px",padding:"12px 14px",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:10}}>
+                <div style={{fontSize:9,letterSpacing:2,color:"#6A7D8F",fontFamily:"monospace",marginBottom:8}}>EJERCICIOS ADICIONALES</div>
+                <textarea placeholder="Anota aquí cualquier ejercicio extra que hiciste hoy..." value={extras[activeDay]||""} onChange={e=>setExtra(activeDay,e.target.value)}
+                  style={{width:"100%",minHeight:60,background:"transparent",border:"none",color:"#9AAFC0",fontSize:13,resize:"vertical",outline:"none",lineHeight:1.6}}/>
+              </div>
+
+              {!completedDays[cd.id]&&(
+                <div style={{padding:"0 12px 14px"}}>
+                  <button onClick={()=>markDone(cd.id)} style={{width:"100%",padding:13,borderRadius:10,border:"none",background:pct===100?"linear-gradient(135deg,#2E7D32,#4CAF50)":"linear-gradient(135deg,#2C3E50,#4A6070)",color:"#fff",fontSize:13,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",boxShadow:pct===100?"0 4px 20px rgba(76,175,80,0.4)":"none"}}>
+                    {pct===100?"✓ DÍA COMPLETADO":`MARCAR DÍA LISTO (${doneCount}/${total})`}
+                  </button>
+                </div>
+              )}
+              {completedDays[cd.id]&&(
+                <div style={{padding:"0 12px 12px"}}>
+                  <div style={{padding:"11px 14px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                    <span style={{fontSize:12,color:"#7CB87E"}}>Completado ✓ — {formatDate(completedDays[cd.id])}</span>
+                    <button onClick={()=>resetDay(cd.id)} style={{background:"transparent",border:"1px solid rgba(255,255,255,0.15)",color:"#5A6E80",fontSize:11,padding:"4px 10px",borderRadius:5,cursor:"pointer",fontFamily:"monospace"}}>reset</button>
                   </div>
-                ))}
+                </div>
+              )}
+              <div style={{margin:"0 12px 24px",padding:"9px 14px",background:"rgba(46,134,193,0.1)",borderRadius:8,border:"1px solid rgba(46,134,193,0.2)"}}>
+                <span style={{fontSize:12,color:"#7FB3D3"}}><strong>CARDIO OPCIONAL:</strong> 10-15 min elliptical o bike al final.</span>
               </div>
             </div>
-          ))}
-
-          {/* Add exercise button */}
-          <button onClick={addFreeEx} style={{width:"100%",padding:"12px",borderRadius:10,border:"1px dashed rgba(200,170,100,0.4)",background:"transparent",color:"#C8AA64",fontSize:13,cursor:"pointer",marginBottom:16,letterSpacing:1,fontFamily:"monospace"}}>
-            + AÑADIR EJERCICIO
-          </button>
-
-          {/* Complete / Reset */}
-          {freeDay.exercises.length>0&&!freeDay.completed&&(
-            <button onClick={markFreeDone} style={{width:"100%",padding:13,borderRadius:10,border:"none",background:"linear-gradient(135deg,#2E7D32,#4CAF50)",color:"#fff",fontSize:13,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",marginBottom:12,boxShadow:"0 4px 20px rgba(76,175,80,0.3)"}}>
-              ✓ SESIÓN COMPLETADA
-            </button>
           )}
-          {freeDay.completed&&(
-            <div style={{padding:"11px 14px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-              <span style={{fontSize:12,color:"#7CB87E"}}>Completado ✓ — {formatDate(freeDay.date)}</span>
-              <button onClick={resetFreeDay} style={{background:"transparent",border:"1px solid rgba(255,255,255,0.15)",color:"#5A6E80",fontSize:11,padding:"4px 10px",borderRadius:5,cursor:"pointer",fontFamily:"monospace"}}>reset</button>
+
+          {/* ── Día E — Libre ── */}
+          {activeDay==="free"&&(
+            <div style={{padding:"10px 12px"}}>
+              <div style={{background:"linear-gradient(135deg,#4A3728CC,#C8AA6444)",borderRadius:10,padding:"13px 15px",border:"1px solid rgba(200,170,100,0.4)",marginBottom:12}}>
+                <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                  <div>
+                    <div style={{fontSize:17,fontWeight:"bold",color:"#F0E6CC",letterSpacing:1}}>SESIÓN LIBRE</div>
+                    <div style={{fontSize:11,color:"#B8C8D8",marginTop:2}}>Circuito · Máquinas · Lo que sea</div>
+                    <div style={{fontSize:10,color:"#C8AA64",marginTop:3,fontFamily:"monospace"}}>
+                      {freeDay.exercises.length} ejercicios añadidos
+                    </div>
+                    {freeDay.startTime&&(
+                      <div style={{fontSize:10,color:"#C8AA64",marginTop:3,fontFamily:"monospace"}}>
+                        ⏱ Inicio: {formatTime(freeDay.startTime)}{!freeDay.completed&&` · ${Math.round((now-freeDay.startTime)/60000)} min`}
+                      </div>
+                    )}
+                  </div>
+                  <div style={{textAlign:"right"}}>
+                    <div style={{fontSize:22,fontWeight:"bold",color:"#C8AA64"}}>{freeDay.exercises.filter(e=>e.done).length}</div>
+                    <div style={{fontSize:10,color:"#6A7D8F",fontFamily:"monospace"}}>hechos</div>
+                  </div>
+                </div>
+              </div>
+
+              {freeDay.exercises.map((ex,idx)=>(
+                <div key={ex.id} style={{background:ex.done?"rgba(40,80,40,0.35)":"rgba(255,255,255,0.04)",border:ex.done?"1px solid rgba(76,175,80,0.4)":"1px solid rgba(255,255,255,0.08)",borderRadius:10,marginBottom:8,padding:"12px 12px",opacity:ex.done?0.78:1}}>
+                  <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:8}}>
+                    <button onClick={()=>toggleFreeEx(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:ex.done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{ex.done?"✓":""}</button>
+                    <input type="text" placeholder="Nombre del ejercicio..." value={ex.name} onChange={e=>updateFreeEx(ex.id,"name",e.target.value)}
+                      style={{flex:1,background:"transparent",border:"none",borderBottom:"1px solid rgba(255,255,255,0.15)",color:"#E8DCC8",fontSize:13,padding:"2px 4px",outline:"none"}}/>
+                    <button onClick={()=>deleteFreeEx(ex.id)} style={{width:24,height:24,borderRadius:6,border:"none",background:"rgba(200,60,60,0.2)",color:"#E88080",fontSize:16,cursor:"pointer",flexShrink:0,display:"flex",alignItems:"center",justifyContent:"center"}}>×</button>
+                  </div>
+                  <div style={{display:"flex",gap:8,paddingLeft:36}}>
+                    {[{field:"sets",label:"Series"},{field:"reps",label:"Reps"},{field:"weight",label:"Peso"}].map(f=>(
+                      <div key={f.field} style={{flex:1}}>
+                        <div style={{fontSize:8,color:"#5A6E80",fontFamily:"monospace",marginBottom:3}}>{f.label.toUpperCase()}</div>
+                        <input type="text" placeholder="—" value={ex[f.field]||""} onChange={e=>updateFreeEx(ex.id,f.field,e.target.value)}
+                          style={{width:"100%",padding:"5px 8px",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(200,170,100,0.25)",borderRadius:6,color:"#C8AA64",fontSize:12,textAlign:"center",outline:"none"}}/>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              <button onClick={addFreeEx} style={{width:"100%",padding:"12px",borderRadius:10,border:"1px dashed rgba(200,170,100,0.4)",background:"transparent",color:"#C8AA64",fontSize:13,cursor:"pointer",marginBottom:14,letterSpacing:1,fontFamily:"monospace"}}>
+                + AÑADIR EJERCICIO
+              </button>
+
+              {freeDay.exercises.length>0&&!freeDay.completed&&(
+                <button onClick={markFreeDone} style={{width:"100%",padding:13,borderRadius:10,border:"none",background:"linear-gradient(135deg,#7D6000,#C8AA64)",color:"#0D1B2A",fontSize:13,fontWeight:"bold",cursor:"pointer",letterSpacing:2,fontFamily:"monospace",marginBottom:12,boxShadow:"0 4px 20px rgba(200,170,100,0.3)"}}>
+                  ✓ SESIÓN COMPLETADA
+                </button>
+              )}
+              {freeDay.completed&&(
+                <div style={{padding:"11px 14px",borderRadius:10,background:"rgba(40,80,40,0.4)",border:"1px solid rgba(76,175,80,0.4)",display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
+                  <div>
+                    <div style={{fontSize:12,color:"#7CB87E"}}>Completado ✓ — {formatDate(freeDay.date)}</div>
+                    {freeDay.startTime&&freeDay.endTime&&<div style={{fontSize:11,color:"#5A8A5E",fontFamily:"monospace",marginTop:2}}>{formatTime(freeDay.startTime)} → {formatTime(freeDay.endTime)} · {formatDuration(freeDay.endTime-freeDay.startTime)}</div>}
+                  </div>
+                  <button onClick={resetFreeDay} style={{background:"transparent",border:"1px solid rgba(255,255,255,0.15)",color:"#5A6E80",fontSize:11,padding:"4px 10px",borderRadius:5,cursor:"pointer",fontFamily:"monospace"}}>reset</button>
+                </div>
+              )}
+              <div style={{padding:"11px 14px",background:"rgba(200,170,100,0.08)",borderRadius:10,border:"1px solid rgba(200,170,100,0.2)"}}>
+                <div style={{fontSize:12,color:"#C8AA64",lineHeight:1.6}}>💡 Los ejercicios que añades aquí se guardan. La próxima vez que hagas este circuito ya están listos.</div>
+              </div>
             </div>
           )}
-
-          <div style={{padding:"11px 14px",background:"rgba(200,170,100,0.08)",borderRadius:10,border:"1px solid rgba(200,170,100,0.2)"}}>
-            <div style={{fontSize:12,color:"#C8AA64",lineHeight:1.6}}>💡 Los ejercicios que añades aquí se guardan. La próxima vez que hagas este circuito ya están listos — solo marca y anota el peso.</div>
-          </div>
         </div>
       )}
 
-      {/* ── EXTRAS / SUPLEMENTARIOS ── */}
+      {/* ── EXTRAS ── */}
       {view==="suplementarios"&&(
         <div style={{padding:16}}>
           <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:6,fontFamily:"monospace",textAlign:"center"}}>EJERCICIOS SUPLEMENTARIOS</div>
-          <div style={{fontSize:12,color:"#6A7D8F",textAlign:"center",marginBottom:20,lineHeight:1.5}}>Márcalos si los haces. No son obligatorios — son para cuando tengas tiempo o quieras variar.</div>
-
+          <div style={{fontSize:12,color:"#6A7D8F",textAlign:"center",marginBottom:20,lineHeight:1.5}}>Márcalos si los haces. No son obligatorios — para cuando tengas tiempo o quieras variar.</div>
           {SUPPLEMENTAL.map(cat=>(
             <div key={cat.category} style={{marginBottom:20}}>
               <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:10}}>
@@ -437,12 +444,8 @@ function App(){
                 return(
                   <div key={ex.id} style={{background:done?"rgba(40,80,40,0.35)":"rgba(255,255,255,0.04)",border:done?"1px solid rgba(76,175,80,0.4)":"1px solid rgba(255,255,255,0.07)",borderRadius:10,marginBottom:8,overflow:"hidden",opacity:done?0.78:1}}>
                     <div style={{display:"flex",alignItems:"center",padding:"11px 12px",gap:10}}>
-                      <button onClick={()=>toggleSupp(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                        {done?"✓":""}
-                      </button>
-                      <div style={{flex:1}}>
-                        <div style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</div>
-                      </div>
+                      <button onClick={()=>toggleSupp(ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:done?"#4CAF50":"rgba(255,255,255,0.1)",color:"#fff",fontSize:13,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{done?"✓":""}</button>
+                      <div style={{flex:1}}><div style={{fontSize:13,fontWeight:"bold",color:done?"#7CB87E":"#E8DCC8",textDecoration:done?"line-through":"none"}}>{ex.name}</div></div>
                       <button onClick={()=>setExpandedSupp(noteOpen?null:ex.id)} style={{width:26,height:26,borderRadius:6,border:"none",background:noteOpen?"rgba(200,170,100,0.2)":"rgba(255,255,255,0.06)",color:noteOpen?"#C8AA64":"#5A6E80",fontSize:13,cursor:"pointer",flexShrink:0}}>i</button>
                     </div>
                     {noteOpen&&<div style={{padding:"9px 12px 11px 48px",background:"rgba(200,170,100,0.06)",borderTop:"1px solid rgba(200,170,100,0.15)",fontSize:12,color:"#B8A880",lineHeight:1.6,fontStyle:"italic"}}>{ex.note}</div>}
@@ -451,9 +454,8 @@ function App(){
               })}
             </div>
           ))}
-
           <div style={{padding:"12px 14px",background:"rgba(200,170,100,0.08)",borderRadius:10,border:"1px solid rgba(200,170,100,0.2)"}}>
-            <div style={{fontSize:12,color:"#C8AA64",lineHeight:1.6}}>💡 <strong>Cómo usar esta lista:</strong> Si tienes 10-15 min extra o quieres sustituir un ejercicio principal que no puedes hacer ese día, escoge uno de aquí de la misma categoría. Márcalo y sigue.</div>
+            <div style={{fontSize:12,color:"#C8AA64",lineHeight:1.6}}>💡 <strong>Cómo usar:</strong> Si tienes tiempo extra o necesitas sustituir un ejercicio que no puedes hacer, escoge uno de aquí de la misma categoría.</div>
           </div>
         </div>
       )}
@@ -463,10 +465,10 @@ function App(){
         <div style={{padding:16}}>
           <div style={{fontSize:11,letterSpacing:4,color:"#C8AA64",marginBottom:16,fontFamily:"monospace",textAlign:"center"}}>PROGRESO ACUMULADO</div>
           <div style={{display:"flex",gap:10,marginBottom:16}}>
-            {[{label:"Entrenos",value:totalSessions,icon:"🏋️"},{label:"Semanas 3+",value:streak,icon:"🔥"},{label:"Horas",value:Math.round(totalMins/60),icon:"⏱️"}].map((s,i)=>(
+            {[{label:"Entrenos",value:totalSessions,icon:"🏋️"},{label:"Semanas 3+",value:streak,icon:"🔥"},{label:"Horas reales",value:totalRealMins>0?`${Math.floor(totalRealMins/60)}h${totalRealMins%60}m`:"--",icon:"⏱️"}].map((s,i)=>(
               <div key={i} style={{flex:1,background:"rgba(255,255,255,0.05)",border:"1px solid rgba(200,170,100,0.2)",borderRadius:10,padding:"13px 8px",textAlign:"center"}}>
                 <div style={{fontSize:20}}>{s.icon}</div>
-                <div style={{fontSize:24,fontWeight:"bold",color:"#C8AA64",lineHeight:1.2}}>{s.value}</div>
+                <div style={{fontSize:typeof s.value==="string"?16:24,fontWeight:"bold",color:"#C8AA64",lineHeight:1.2}}>{s.value}</div>
                 <div style={{fontSize:9,color:"#5A6E80",fontFamily:"monospace",marginTop:2}}>{s.label.toUpperCase()}</div>
               </div>
             ))}
@@ -479,7 +481,7 @@ function App(){
                   const n=entries.length;const full=n>=3;const h=18+n*13;
                   return(
                     <div key={wk} style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
-                      <div style={{fontSize:9,color:full?"#4CAF50":"#C8AA64",fontFamily:"monospace"}}>{n}/4</div>
+                      <div style={{fontSize:9,color:full?"#4CAF50":"#C8AA64",fontFamily:"monospace"}}>{n}/5</div>
                       <div style={{width:"100%",height:h,borderRadius:5,background:full?"linear-gradient(180deg,#2E7D32,#4CAF50)":n>=2?"linear-gradient(180deg,#7D6000,#C8AA64)":"linear-gradient(180deg,#5C2800,#E67E22)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11}}>{full?"✓":""}</div>
                       <div style={{fontSize:8,color:"#4A5E70",fontFamily:"monospace"}}>{wk.split("-W")[1]}w</div>
                     </div>
@@ -491,14 +493,14 @@ function App(){
           {totalSessions>0&&(
             <div style={{background:"rgba(200,170,100,0.1)",border:"1px solid rgba(200,170,100,0.3)",borderRadius:10,padding:"13px 16px",marginBottom:16,textAlign:"center"}}>
               <div style={{fontSize:13,color:"#C8AA64",lineHeight:1.6}}>
-                {streak>=4?`🏆 ${streak} semanas seguidas completas. Consistencia real.`:streak>=2?`💪 ${streak} semanas seguidas. Sigan así.`:totalSessions>=6?"📈 Más de 6 entrenos. El hábito se está formando.":"🌱 Cada entreno cuenta. El historial se construye aquí."}
+                {streak>=4?`🏆 ${streak} semanas seguidas. Consistencia real.`:streak>=2?`💪 ${streak} semanas seguidas. Sigan así.`:totalSessions>=6?"📈 Más de 6 entrenos. El hábito se está formando.":"🌱 Cada entreno cuenta."}
               </div>
             </div>
           )}
           <div style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:12,overflow:"hidden"}}>
             <div style={{padding:"11px 16px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:10,letterSpacing:3,color:"#6A7D8F",fontFamily:"monospace"}}>REGISTRO DETALLADO</div>
             {history.length===0?(
-              <div style={{padding:"28px 16px",textAlign:"center",color:"#4A5E70",fontSize:13}}>Aún no hay entrenos registrados.<br/><span style={{fontSize:11,color:"#3A4E60"}}>Completa tu primer día y aparecerá aquí.</span></div>
+              <div style={{padding:"28px 16px",textAlign:"center",color:"#4A5E70",fontSize:13}}>Aún no hay entrenos registrados.</div>
             ):weeks.map(([wk,entries])=>{
               const full=entries.length>=3;
               return(
@@ -509,14 +511,17 @@ function App(){
                   </div>
                   {entries.sort((a,b)=>b.date.localeCompare(a.date)).map((e,i)=>(
                     <div key={i} style={{padding:"11px 16px",borderBottom:"1px solid rgba(255,255,255,0.04)",display:"flex",alignItems:"center",gap:12}}>
-                      <div style={{width:10,height:10,borderRadius:"50%",background:DAY_COLORS[e.dayId],flexShrink:0}}/>
+                      <div style={{width:10,height:10,borderRadius:"50%",background:DAY_COLORS[e.dayId]||"#888",flexShrink:0}}/>
                       <div style={{flex:1}}>
-                        <div style={{fontSize:13,color:"#D0C0A0"}}>{DAY_LABELS[e.dayId]}</div>
-                        <div style={{fontSize:11,color:"#4A6070",fontFamily:"monospace"}}>{formatDate(e.date)}</div>
+                        <div style={{fontSize:13,color:"#D0C0A0"}}>{DAY_LABELS[e.dayId]||e.dayId}</div>
+                        <div style={{fontSize:10,color:"#4A6070",fontFamily:"monospace"}}>
+                          {formatDate(e.date)}
+                          {e.startTime&&e.endTime&&` · ${formatTime(e.startTime)}–${formatTime(e.endTime)}`}
+                        </div>
                       </div>
                       <div style={{textAlign:"right"}}>
                         <div style={{fontSize:13,color:e.done===e.total?"#4CAF50":"#C8AA64",fontWeight:"bold"}}>{e.done}/{e.total}</div>
-                        <div style={{fontSize:9,color:"#4A6070",fontFamily:"monospace"}}>ejercicios</div>
+                        {e.duration&&<div style={{fontSize:10,color:"#C8AA64",fontFamily:"monospace"}}>{formatDuration(e.duration)}</div>}
                       </div>
                     </div>
                   ))}
